@@ -55,6 +55,7 @@ const PopupForm = ({ open, onClose }) => {
                   <label htmlFor="fullname" className="text-xs font-semibold px-1">Enter Full Name</label>
                   <input
                     type="text"
+                    name="fullname"
                     className="
                       w-full px-3 py-2 rounded-xl
                       border-2 border-gray-200 outline-none
@@ -64,8 +65,9 @@ const PopupForm = ({ open, onClose }) => {
                   />
                 </Box>
                 <Box className="mb-2">
-                  <label htmlFor="mail" className="text-xs font-semibold px-1">Enter Email Address</label>
+                  <label htmlFor="email" className="text-xs font-semibold px-1">Enter Email Address</label>
                   <input
+                    name="email"
                     type="text"
                     className="
                       w-full px-3 py-2 rounded-xl
@@ -76,9 +78,23 @@ const PopupForm = ({ open, onClose }) => {
                   />
                 </Box>
                 <Box className="mb-2">
+                  <label htmlFor="phone" className="text-xs font-semibold px-1">Enter Phone Number</label>
+                  <input
+                    type="text"
+                    name="phone"
+                    className="
+                      w-full px-3 py-2 rounded-xl
+                      border-2 border-gray-200 outline-none
+                      focus:border-green-700
+                    "
+                    placeholder="e.g +2347066338756"
+                  />
+                </Box>
+                <Box className="mb-2">
                   <label htmlFor="productInterest" className="text-xs font-semibold px-1">Product Interest</label>
                   <input
                     type="text"
+                    name="productInterest"
                     className="
                       w-full px-3 py-2 rounded-xl
                       border-2 border-gray-200 outline-none
@@ -103,9 +119,9 @@ const PopupForm = ({ open, onClose }) => {
                   </select>
                 </Box>
                 <Box className="mb-2">
-                  <label htmlFor="preferredContact" className="text-xs font-semibold px-1">Preferred Communication Method</label>
+                  <label htmlFor="contactPreference" className="text-xs font-semibold px-1">Preferred Communication Method</label>
                   <select
-                    name="preferredContact"
+                    name="contactPreference"
                     className="
                       w-full px-3 py-2 rounded-xl
                       border-2 border-gray-200 outline-none
