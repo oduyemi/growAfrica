@@ -30,32 +30,31 @@ export const CountDown = () => {
     }, [timeLeft]); 
 
     return (
-        <Box className="grid grid-flow-col gap-5 text-center auto-cols-max">
-            <Box className="flex flex-col p-2 bg-[#1BAA76] rounded-box text-white">
-                <span className="countdown font-mono text-5xl">
+        <Box className="grid grid-flow-col gap-2 text-center auto-cols-max">
+            <Box className="flex flex-col p-1 bg-[#1BAA76] rounded-box text-white">
+                <span className="countdown font-mono text-base md:text-2xl">
                     <span style={{"--value": timeLeft.days ?? 0}}>{timeLeft.days ?? 0}</span>
                 </span>
-                days
+                <span className="text-xs md:text-sm">days</span>
             </Box>
-            <Box className="flex flex-col p-2 bg-[#1BAA76] rounded-box text-white">
-                <span className="countdown font-mono text-5xl">
+            <Box className="flex flex-col p-1 bg-[#1BAA76] rounded-box text-white">
+                <span className="countdown font-mono text-base md:text-2xl">
                     <span style={{"--value": timeLeft.hours ?? 0}}>{timeLeft.hours ?? 0}</span>
                 </span>
-                hours
+                <span className="text-xs md:text-sm">hours</span>
             </Box>
-            <Box className="flex flex-col p-2 bg-[#1BAA76] rounded-box text-white">
-                <span className="countdown font-mono text-5xl">
+            <Box className="flex flex-col p-1 bg-[#1BAA76] rounded-box text-white">
+                <span className="countdown font-mono text-base md:text-2xl">
                     <span style={{"--value": timeLeft.minutes ?? 0}}>{timeLeft.minutes ?? 0}</span>
                 </span>
-                min
+                <span className="text-xs md:text-sm">min</span>
             </Box>
-            <Box className="flex flex-col p-2 bg-[#1BAA76] rounded-box text-white">
-                <span className="countdown font-mono text-5xl">
+            <Box className="flex flex-col p-1 bg-[#1BAA76] rounded-box text-white">
+                <span className="countdown font-mono text-base md:text-2xl">
                     <span style={{"--value": timeLeft.seconds ?? 0}}>{timeLeft.seconds ?? 0}</span>
                 </span>
-                sec
+                <span className="text-xs md:text-sm">sec</span>
             </Box>
         </Box>
     );
 };
-

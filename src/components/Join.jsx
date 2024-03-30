@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import { PopupForm } from "./PopupForm";
 
 
-export const Banner = () => {
+export const Join = () => {
     const [popupOpen, setPopupOpen] = useState(false);
 
     const handlePopupOpen = () => {
@@ -13,41 +13,34 @@ export const Banner = () => {
     };
 
     const handlePopupClose = () => {
-    setPopupOpen(false);
+        setPopupOpen(false);
     };
-
+    
     return(
-        <Box maxWidth="xl" className="mx-auto mt-10">
-            <Box maxWidth="md" className="banner md:mx-auto md:w-1/2 md:text-center">
+        <Box maxWidth="xl" className="md:mx-auto mt-6">
+            <Box maxWidth="md" className="join mx-auto md:w-1/2 md:text-center">
             <Typography 
                 variant="h3" 
-                className="md:text-l sm:text-sm inline md:pl-4"
+                className="space text-l inline md:pl-4"
                 sx={{ 
-                    fontWeight:"500"
+                    fontWeight:"400",
+                    fontSize: "28px"
                 }}
             >
-                Unveiling the Essence of {" "}
-                <span>
-                    <Typography 
-                        variant="h3" 
-                        className="text-pry inline"
-                        sx={{ fontWeight:"500"}}
-                    >
-                        Africa&apos;s {" "}
-                    </Typography>
-                </span>
-                Rich Heritage
+                Join Our Waitlist
+                
             </Typography>
             <Typography 
                 variant="h6" 
                 paragraph 
-                className="mx-auto text-xl md:text-center"
+                className="space mx-auto md:text-xl sm:text-l md:text-center"
                 sx={{ fontWeight: "300", marginTop:"10px"}}
                 gutterBottom
             >
-                 Secure your spot on the forefront of this groundbreaking journey.
-                 Be the first to explore, shop, and empower. Together, let's grow 
-                 Africa beyond boundaries.
+                Join our waitlist today and be the first to
+                be notified when our GrowAfrica Mobile App
+                and Websiite launches. Simply tap on the
+                button below and fill the form.
             </Typography>
 
             <Box className="space mx-auto md:text-center mt-8">
