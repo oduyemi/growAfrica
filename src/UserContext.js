@@ -26,7 +26,7 @@ export const UserProvider = ({ children }) => {
           });
   
           setTimeout(() => {
-            window.location.href = "/user-account";
+            window.location.href = "/admin";
           }, 1000);
         } else if (response.status === 400) {
           console.log("Error:", response.data);
