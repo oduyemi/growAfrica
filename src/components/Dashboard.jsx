@@ -17,9 +17,6 @@ export const Dashboard = () => {
     });
 
     useEffect(() => {
-        if (!user){
-            window.location.href = "/admin/signin"
-        }
         if (user) {
             setUserDetails({
                 fname: user.fname || "",
@@ -27,6 +24,8 @@ export const Dashboard = () => {
                 email: user.email || "",
                 phone: user.phone || "",
             });
+        } else {
+            window.location.href = "/admin/signin"
         } 
     }, [user]);
 
