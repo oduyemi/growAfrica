@@ -47,12 +47,12 @@ router.post("/contact", async (req: Request, res: Response) => {
 
 router.post("/admin/signup", async (req: Request, res: Response) => {
     try {
-        const { fname, lname, email, phone, password, confirmPassword } = req.body;
-        if (![fname, lname, email, phone, password, confirmPassword].every((field) => field)) {
+        const { fname, lname, email, phone, pwd, cpwd } = req.body;
+        if (![fname, lname, email, phone, pwd, cpwd].every((field) => field)) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
-        if (password !== confirmPassword) {
+        if (pwd !== cpwd) {
             return res.status(400).json({ message: "Both passwords must match!" });
         }
 
@@ -61,8 +61,8 @@ router.post("/admin/signup", async (req: Request, res: Response) => {
             return res.status(400).json({ message: "Email already registered" });
         }
 
-        const hashedPassword = await hash(password, 10);
-        const newAdmin: IAdmin = new Admin({ fname, lname, email, phone, password: hashedPassword }) as IAdmin;
+        const hashedPassword = await hash(pwd, 10);
+        const newAdmin: IAdmin = new Admin({ fname, lname, email, phone, pwd: hashedPassword }) as IAdmin;
         await newAdmin.save();
 
         // Access token
@@ -97,10 +97,10 @@ router.post("/admin/signup", async (req: Request, res: Response) => {
 
    
   
-router.post("/admin/login", async (req: Request, res: Response) => {
+router.post("/admin/signin", async (req: Request, res: Response) => {
     try {
-        const { email, password } = req.body;
-        if (![email, password].every((field) => field)) {
+        const { email, pwd } = req.body;
+        if (![email, pwd].every((field) => field)) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
@@ -110,7 +110,7 @@ router.post("/admin/login", async (req: Request, res: Response) => {
                 return res.status(401).json({ message: "Email not registered. Please register first." });
             }
 
-            const isPasswordMatch = await compare(password, admin.password);
+            const isPasswordMatch = await compare(pwd, admin.pwd);
 
             if (!isPasswordMatch) {
                 return res.status(401).json({ message: "Incorrect email or password" });

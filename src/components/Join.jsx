@@ -39,7 +39,7 @@ export const Join = () => {
             >
                 Join our waitlist today and be the first to
                 be notified when our GrowAfrica Mobile App
-                and Websiite launches. Simply tap on the
+                and website launch. Simply tap on the
                 button below and fill the form.
             </Typography>
 

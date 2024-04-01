@@ -142,4 +142,34 @@ body{
     font-weight: 300 !important;
     font-size: small !important;
   }
+  .table-auto {
+    width: 100%;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .table-auto thead {
+    display: none;
+  }
+
+  .table-auto tbody {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .table-auto tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .table-auto th,
+  .table-auto td {
+    display: block;
+    text-align: left;
+  }
+
+  .table-auto td {
+    padding: 8px;
+  }
 }
