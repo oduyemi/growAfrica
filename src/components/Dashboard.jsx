@@ -29,12 +29,12 @@ export const Dashboard = () => {
         } 
     }, [user]);
 
-    // useEffect(() => {
-    //     const storedUserDetails = JSON.parse(localStorage.getItem('userDetails'));
-    //     if (storedUserDetails) {
-    //         setUserDetails(storedUserDetails);
-    //     }
-    // }, []);
+    useEffect(() => {
+        const storedUserDetails = JSON.parse(localStorage.getItem('userDetails'));
+        if (storedUserDetails) {
+            setUserDetails(storedUserDetails);
+        }
+    }, []);
     return(
         <>
             <Box id="sideNav" className="lg:block hidden bg-carton w-full lg:w-64 h-screen fixed rounded-none border-none">
