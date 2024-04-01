@@ -22,10 +22,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
-app.use("/api", fetchRouter);
-app.use("/api/send", sendRouter);
-app.use("/api/update", updateRouter);
-app.use("/api/erase", eraseRouter);
+app.use("/", fetchRouter);
+app.use("/send", sendRouter);
+app.use("/update", updateRouter);
+app.use("/erase", eraseRouter);
 
 db.on("error", console.error.bind(console, "Mongodb Connection Error:"));
 
