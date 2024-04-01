@@ -13,8 +13,8 @@ export const EditProfile = () => {
     const { user, setUser } = useContext(UserContext);
     const [flashMessage, setFlashMessage] = useState(null)
     const [userDetails, setUserDetails] = useState({
-        firstName: "",
-        lastName: "",
+        fname: "",
+        lname: "",
         email: "",
         phone: ""
     });
@@ -22,8 +22,8 @@ export const EditProfile = () => {
     useEffect(() => {
         if (user) {
             setUserDetails({
-                firstName: user.firstName || "",
-                lastName: user.lastName || "",
+                fname: user.fname || "",
+                lname: user.lname || "",
                 email: user.email || "",
                 phone: user.phone || "",
             });
@@ -39,7 +39,7 @@ export const EditProfile = () => {
 
     const updateUserData = async () => {
         try {
-            const response = await axios.put(`http://localhost:8000/admin/${user.id}`, {
+            const response = await axios.put(`https://grow-africa-api-wine.vercel.app/admin/${user.id}`, {
                 first_name: userDetails.fname,
                 last_name: userDetails.lname,
                 email: userDetails.email,
@@ -116,18 +116,19 @@ export const EditProfile = () => {
                 <Box className="lg:flex gap-4 items-stretch">
                     <Box className="bg-rosepink md:p-2 p-6 rounded-xl border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%]">
                         <Box className="flex justify-center items-center space-x-5 h-full">
-                            <Box>
-                                <Typography variant="h5" className="text-pry inline" paragraph>John Doe</Typography>&emsp; &emsp;
-                                    <span className="inline text-right">
-                                        <Link to="/admin/update">
-                                            <EditIcon
-                                                sx={{
-                                                    fontSize: 17
-                                                }}
-                                            />
-                                        </Link>
-                                    </span>
-                                <Typography variant="h6" paragraph>07055444778</Typography>
+                        <Box>
+                                <Typography variant="h5" className="text-pry inline" paragraph>{user.fname} {user.lname} </Typography>&emsp; &emsp;
+                                <span className="inline text-right">
+                                    <Link to="/admin/update">
+                                        <EditIcon
+                                            sx={{
+                                                fontSize: 17
+                                            }}
+                                        />
+                                    </Link>
+                                </span>
+                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{user.phone}</Typography>
+                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{user.email}</Typography>
                                 
                             </Box>
                         </Box>
@@ -173,7 +174,7 @@ export const EditProfile = () => {
                                 type="text" 
                                 className="text-dark" 
                                 name="fname" 
-                                value={userDetails.firstName || user.fname} 
+                                value={userDetails.fname || user.fname} 
                                 onChange={handleChange} 
                             />
 
@@ -184,7 +185,7 @@ export const EditProfile = () => {
                                 type="text" 
                                 className="text-dark" 
                                 name="lname" 
-                                value={userDetails.lastName || user.lname} 
+                                value={userDetails.lname || user.lname} 
                                 onChange={handleChange} 
                             />
                         </p>

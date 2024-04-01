@@ -1,3 +1,5 @@
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../UserContext";
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
@@ -6,6 +8,26 @@ import EditIcon from '@mui/icons-material/Edit';
 
 
 export const VendorsList = () => {
+    const { user, setUser } = useContext(UserContext);
+    const [flashMessage, setFlashMessage] = useState(null)
+    const [userDetails, setUserDetails] = useState({
+        fname: "",
+        lname: "",
+        email: "",
+        phone: ""
+    });
+
+    useEffect(() => {
+        if (user) {
+            setUserDetails({
+                fname: user.fname || "",
+                lname: user.lname || "",
+                email: user.email || "",
+                phone: user.phone || "",
+            });
+        }
+    }, [user]);
+
     return(
         <>
             <Box id="sideNav" className="lg:block hidden bg-carton w-full lg:w-64 h-screen fixed rounded-none border-none">
@@ -36,17 +58,18 @@ export const VendorsList = () => {
                     <Box className="bg-rosepink md:p-2 p-6 rounded-xl border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%]">
                         <Box className="flex justify-center items-center space-x-5 h-full">
                             <Box>
-                                <Typography variant="h5" className="text-pry inline" paragraph>John Doe</Typography>&emsp; &emsp;
-                                    <span className="inline text-right">
-                                        <Link to="/admin/update">
-                                            <EditIcon
-                                                sx={{
-                                                    fontSize: 17
-                                                }}
-                                            />
-                                        </Link>
-                                    </span>
-                                <Typography variant="h6" paragraph>07055444778</Typography>
+                                <Typography variant="h5" className="text-pry inline" paragraph>{user.fname} {user.lname} </Typography>&emsp; &emsp;
+                                <span className="inline text-right">
+                                    <Link to="/admin/update">
+                                        <EditIcon
+                                            sx={{
+                                                fontSize: 17
+                                            }}
+                                        />
+                                    </Link>
+                                </span>
+                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{user.phone}</Typography>
+                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{user.email}</Typography>
                                 
                             </Box>
                         </Box>

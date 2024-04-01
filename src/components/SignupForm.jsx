@@ -15,6 +15,7 @@ export const SignupForm = () => {
         fname: "",
         lname: "",
         email: "",
+        phone: "",
         pwd: "",
         cpwd: ""
     });
@@ -26,7 +27,7 @@ export const SignupForm = () => {
                 throw new Error("Both Passwords must match!");
             }
     
-            const response = await axios.post("http://localhost:8000/admin/signup", formData, {
+            const response = await axios.post("https://grow-africa-api-wine.vercel.app/admin/signup", formData, {
                 headers: { "Content-Type": "application/json" }
             });
     
@@ -82,6 +83,8 @@ export const SignupForm = () => {
                     <input type="text" name="lname" className="border border-black mb-3 rounded-md" onChange={e => setFormData({...formData, lname: e.target.value})} value={formData.lname} />
                     <label htmlFor="email" className="text-gray-700">Email</label>
                     <input type="email" name="email" className="border border-black mb-3 rounded-md" onChange={e => setFormData({...formData, email: e.target.value})} value={formData.email} />
+                    <label htmlFor="phone" className="text-gray-700">Phone</label>
+                    <input type="number" name="email" className="border border-black mb-3 rounded-md" onChange={e => setFormData({...formData, phone: e.target.value})} value={formData.phone} />
                     <label htmlFor="pwd" className="text-gray-700">Password</label>
                     <Box className="relative">
                     <input 

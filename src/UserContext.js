@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
     // LOGIN VALIDATION
     const handleLogin = async (email, password) => {
       try {
-        const response = await axios.post("http://localhost8000/admin/signin", { email, password });
+        const response = await axios.post("https://grow-africa-api-wine.vercel.app/admin/signin", { email, password });
   
         if (response.status === 200) {
           console.log("Success:", response.data);

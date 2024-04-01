@@ -35,7 +35,7 @@ export const SigninForm = () => {
         <Box className="h-screen mx-auto" margin="10px">
             <h1 className='text-center text-pry text-3xl hover:text-carton font-extrabold pt-10 pb-10'>Sign In</h1>
                 {flashMessage && (
-                    <Box className={`text-${flashMessage.type} text-center my-3 text-btn`}>
+                    <Box className={`text-${flashMessage.type} text-center my-3 text-black`}>
                         {flashMessage.message}
                     </Box>
                 )}

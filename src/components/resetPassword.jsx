@@ -12,9 +12,7 @@ export const ResetPasswordForm = () => {
     const [flashMessage, setFlashMessage] = useState(null);
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formData, setFormData] = useState({
-        fname: "",
-        lname: "",
-        email: "",
+        oldpwd: "",
         pwd: "",
         cpwd: ""
     });
@@ -26,7 +24,7 @@ export const ResetPasswordForm = () => {
                 throw new Error("Both Passwords must match!");
             }
     
-            const response = await axios.post("http://localhost:8000/admin/reset-password", formData, {
+            const response = await axios.post("https://grow-africa-api-wine.vercel.app/admin/reset-password", formData, {
                 headers: { "Content-Type": "application/json" }
             });
     
