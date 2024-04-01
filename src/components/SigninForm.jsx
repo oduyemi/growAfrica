@@ -68,7 +68,7 @@ export const SigninForm = () => {
                 </Box>
                 <Box className="text-btn text-center my-3">
                     <span style={{ fontSize: "smaller"}}>Don't have an account yet? &nbsp;
-                        <Link className="text-red-600" to="/register" style={{ textDecoration: "none" }}>Click Here</Link>
+                        <Link className="text-red-600" to="/admin/signin" style={{ textDecoration: "none" }}>Click Here</Link>
                     </span>
                 </Box>
             </form>
