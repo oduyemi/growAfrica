@@ -25,6 +25,7 @@ export const Dashboard = () => {
                 phone: user.phone || "",
             });
         } else {
+            console.log("User is null")
             window.location.href = "/admin/signin"
         } 
     }, [user]);
