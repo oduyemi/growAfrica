@@ -53,7 +53,7 @@ export const UserProvider = ({ children }) => {
       localStorage.removeItem("user");
       localStorage.removeItem("token");
       setUser(null);
-      window.location.href = "/admin";
+      window.location.href = "/admin/signin";
     };
   
 
