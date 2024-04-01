@@ -100,7 +100,7 @@ const PopupForm = ({ open, onClose }) => {
                       border-2 border-gray-200 outline-none
                       focus:border-green-700
                     "
-                    placeholder="Product Interest"
+                    placeholder="What is Your Interest About The Product?"
                   />
                 </Box>
                 <Box className="mb-2">
@@ -128,8 +128,9 @@ const PopupForm = ({ open, onClose }) => {
                       focus:border-green-700
                     "
                   >
-                    <option value="">Choose an option</option>
+                    <option value="">Select Your Preferred Communication Method</option>
                     <option value="email">Email</option>
+                    <option value="instagram">Instagram</option>
                     <option value="phonecall">Phone call</option>
                     <option value="whatsapp">WhatsApp</option>
                   </select>
@@ -144,11 +145,13 @@ const PopupForm = ({ open, onClose }) => {
                       focus:border-green-700
                     "
                   >
-                    <option value="">Choose an option</option>
-                    <option value="email">Email</option>
-                    <option value="linkedin">LinkedIn</option>
-                    <option value="socials">Social Media</option>
-                    <option value="referral">Word of mouth</option>
+                    <option value="">How Did You Hear About Us?</option>
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="website">Website</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="x">X</option>
+                    <option value="friend">Friend</option>
                   </select>
                 </Box>
                 <Box className="mb-2">
