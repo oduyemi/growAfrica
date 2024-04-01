@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import Admin, { IAdmin } from "../models/adminModel.js";
+import Admin, { IAdmin } from "../models/adminModel";
 
 
 const router = express.Router();

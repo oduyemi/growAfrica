@@ -13,15 +13,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const adminModel_js_1 = __importDefault(require("../models/adminModel.js"));
-const mailingListModel_js_1 = __importDefault(require("../models/mailingListModel.js"));
+const adminModel_1 = __importDefault(require("../models/adminModel"));
+const mailingListModel_1 = __importDefault(require("../models/mailingListModel"));
 const router = express_1.default.Router();
 router.get("/", (req, res) => {
     res.json({ message: "GrowAfrica!!" });
 });
 router.get("/admin", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const admins = yield adminModel_js_1.default.find();
+        const admins = yield adminModel_1.default.find();
         if (admins.length === 0) {
             res.status(404).json({ Message: "Admins not available" });
         }
@@ -37,7 +37,7 @@ router.get("/admin", (req, res) => __awaiter(void 0, void 0, void 0, function* (
 router.get("/admin/:adminId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const adminId = req.params.adminId;
-        const admin = yield adminModel_js_1.default.findById(adminId);
+        const admin = yield adminModel_1.default.findById(adminId);
         if (!admin) {
             res.status(404).json({ Message: "Admin not found" });
         }
@@ -52,7 +52,7 @@ router.get("/admin/:adminId", (req, res) => __awaiter(void 0, void 0, void 0, fu
 }));
 router.get("/contacts", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const contacts = yield mailingListModel_js_1.default.find();
+        const contacts = yield mailingListModel_1.default.find();
         if (contacts.length === 0) {
             res.status(404).json({ Message: "Contacts not available" });
         }
@@ -68,7 +68,7 @@ router.get("/contacts", (req, res) => __awaiter(void 0, void 0, void 0, function
 router.get("/contacts/:contactId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const contactId = req.params.contactId;
-        const contact = yield mailingListModel_js_1.default.findById(contactId);
+        const contact = yield mailingListModel_1.default.findById(contactId);
         if (!contact) {
             res.status(404).json({ Message: "Contact not found" });
         }

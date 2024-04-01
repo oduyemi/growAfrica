@@ -13,13 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const adminModel_js_1 = __importDefault(require("../models/adminModel.js"));
-const mailingListModel_js_1 = __importDefault(require("../models/mailingListModel.js"));
+const adminModel_1 = __importDefault(require("../models/adminModel"));
+const mailingListModel_1 = __importDefault(require("../models/mailingListModel"));
 const router = express_1.default.Router();
 router.delete("/admin/:adminId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const adminId = req.params.menteeId;
-        const deletedAdmin = yield adminModel_js_1.default.findByIdAndDelete(adminId);
+        const deletedAdmin = yield adminModel_1.default.findByIdAndDelete(adminId);
         if (!deletedAdmin) {
             return res.status(404).json({ Message: "Admin not found" });
         }
@@ -33,7 +33,7 @@ router.delete("/admin/:adminId", (req, res) => __awaiter(void 0, void 0, void 0,
 router.delete("/contact/:contactId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const contactId = req.params.taskId;
-        const deletedContact = yield mailingListModel_js_1.default.findByIdAndDelete(contactId);
+        const deletedContact = yield mailingListModel_1.default.findByIdAndDelete(contactId);
         if (!deletedContact) {
             return res.status(404).json({ Message: "Contact not found" });
         }

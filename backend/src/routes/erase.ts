@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import Admin from "../models/adminModel.js";
-import MailingList from "../models/mailingListModel.js";
+import Admin from "../models/adminModel";
+import MailingList from "../models/mailingListModel";
 
 const router = express.Router();
 

@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const adminModel_js_1 = __importDefault(require("../models/adminModel.js"));
+const adminModel_1 = __importDefault(require("../models/adminModel"));
 const router = express_1.default.Router();
 router.put("/admin/:adminId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -24,7 +24,7 @@ router.put("/admin/:adminId", (req, res) => __awaiter(void 0, void 0, void 0, fu
         if (missingFields.length > 0) {
             return res.status(400).json({ message: `Missing required fields: ${missingFields.join(", ")}` });
         }
-        const updatedAdmin = yield adminModel_js_1.default.findByIdAndUpdate(adminId, updatedAdminData, { new: true });
+        const updatedAdmin = yield adminModel_1.default.findByIdAndUpdate(adminId, updatedAdminData, { new: true });
         if (!updatedAdmin) {
             return res.status(404).json({ Message: "Admin not found" });
         }

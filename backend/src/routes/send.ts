@@ -1,61 +1,80 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const bcrypt_1 = require("bcrypt");
-const adminModel_js_1 = __importDefault(require("../models/adminModel.js"));
-const mailingListModel_js_1 = __importDefault(require("../models/mailingListModel.js"));
-const router = express_1.default.Router();
+import express, { Request, Response } from "express";
+import jwt from "jsonwebtoken";
+import { hash, compare } from "bcrypt";
+import mongoose, { Schema, Document } from "mongoose";
+import Admin, { IAdmin } from "../models/adminModel";
+import MailingList, { IMailingList } from "../models/mailingListModel";
+
+const router = express.Router();
+
+
 require("dotenv").config();
-router.post("/contact", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+
+interface AdminSession {
+    adminID: mongoose.Types.ObjectId; 
+    fname: string;
+    lname: string;
+    email: string;
+    phone: string;
+}
+  
+
+declare module "express-session" {
+    interface SessionData {
+      admin?: AdminSession; 
+    }
+}
+  
+
+
+router.post("/contact", async (req: Request, res: Response) => {
     try {
         const { fullname, email, phone, productInterest, shopperOrVendor, contactPreference, how } = req.body;
         if (![fullname, email, phone, productInterest, shopperOrVendor, contactPreference, how].every((field) => field)) {
             return res.status(400).json({ message: "All fields are required" });
         }
-        const newContact = new mailingListModel_js_1.default({ fullname, email, phone, productInterest, shopperOrVendor, contactPreference, how });
-        yield newContact.save();
+        
+        const newContact: IMailingList = new MailingList({ fullname, email, phone, productInterest, shopperOrVendor, contactPreference, how }) as IMailingList;
+        await newContact.save();
+
         return res.status(200).json({ message: "Contact saved!" });
-    }
-    catch (error) {
+    } catch (error) {
         console.error("Error saving contact:", error);
         return res.status(500).json({ message: "Error saving contact" });
     }
-}));
-router.post("/admin/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+});
+
+
+router.post("/admin/signup", async (req: Request, res: Response) => {
     try {
         const { fname, lname, email, phone, pwd, cpwd } = req.body;
         if (![fname, lname, email, phone, pwd, cpwd].every((field) => field)) {
             return res.status(400).json({ message: "All fields are required" });
         }
+
         if (pwd !== cpwd) {
             return res.status(400).json({ message: "Both passwords must match!" });
         }
-        const existingAdmin = yield adminModel_js_1.default.findOne({ email });
+
+        const existingAdmin = await Admin.findOne({ email });
         if (existingAdmin) {
             return res.status(400).json({ message: "Email already registered" });
         }
-        const hashedPassword = yield (0, bcrypt_1.hash)(pwd, 10);
-        const newAdmin = new adminModel_js_1.default({ fname, lname, email, phone, pwd: hashedPassword });
-        yield newAdmin.save();
+
+        const hashedPassword = await hash(pwd, 10);
+        const newAdmin: IAdmin = new Admin({ fname, lname, email, phone, pwd: hashedPassword }) as IAdmin;
+        await newAdmin.save();
+
         // Access token
-        const token = jsonwebtoken_1.default.sign({
-            adminID: newAdmin._id,
-            email: newAdmin.email
-        }, process.env.JWT_SECRET);
-        const adminSession = {
+        const token = jwt.sign(
+            {
+                adminID: newAdmin._id, 
+                email: newAdmin.email
+            },
+            process.env.JWT_SECRET!,
+        );
+
+        const adminSession: AdminSession = {
             adminID: newAdmin._id,
             fname,
             lname,
@@ -63,61 +82,79 @@ router.post("/admin/signup", (req, res) => __awaiter(void 0, void 0, void 0, fun
             phone
         };
         req.session.admin = adminSession;
+
         return res.status(201).json({
             message: "Admin registered successfully.",
             token,
             nextStep: "/next-login-page",
         });
-    }
-    catch (error) {
+    } catch (error) {
         console.error("Error during admin registration:", error);
         return res.status(500).json({ message: "Error registering admin" });
     }
-}));
-router.post("/admin/signin", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+});
+
+
+   
+  
+router.post("/admin/signin", async (req: Request, res: Response) => {
     try {
         const { email, pwd } = req.body;
         if (![email, pwd].every((field) => field)) {
             return res.status(400).json({ message: "All fields are required" });
         }
+
         try {
-            const admin = yield adminModel_js_1.default.findOne({ email });
+            const admin: IAdmin | null = await Admin.findOne({ email });
             if (!admin) {
                 return res.status(401).json({ message: "Email not registered. Please register first." });
             }
-            const isPasswordMatch = yield (0, bcrypt_1.compare)(pwd, admin.pwd);
+
+            const isPasswordMatch = await compare(pwd, admin.pwd);
+
             if (!isPasswordMatch) {
                 return res.status(401).json({ message: "Incorrect email or password" });
             }
+
             const pin = Math.floor(1000 + Math.random() * 9000).toString();
+
             // Access token
-            const token = jsonwebtoken_1.default.sign({
-                adminID: admin._id,
-                email: admin.email
-            }, process.env.JWT_SECRET || "default_secret");
-            const adminSession = {
+            const token = jwt.sign(
+                {
+                    adminID: admin._id,
+                    email: admin.email
+                },
+                process.env.JWT_SECRET || "default_secret",
+            );
+
+            const adminSession: AdminSession = {
                 adminID: admin._id,
                 fname: admin.fname,
                 lname: admin.lname,
                 email: admin.email,
                 phone: admin.phone,
             };
+
             req.session.admin = adminSession;
+
             return res.status(201).json({
                 message: "Admin login successful!.",
                 pin,
                 nextStep: "/next-dashboard",
                 token,
             });
-        }
-        catch (error) {
+        } catch (error) {
             console.error("Error during admin login:", error);
             return res.status(500).json({ message: "Error logging in admin" });
         }
-    }
-    catch (error) {
+    } catch (error) {
         console.error("Error during admin login:", error);
         return res.status(500).json({ message: "Error logging in admin" });
     }
-}));
-exports.default = router;
+});
+
+
+
+
+
+export default router;
