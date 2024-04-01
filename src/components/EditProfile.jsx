@@ -20,15 +20,23 @@ export const EditProfile = () => {
     });
    
     useEffect(() => {
-        if (user) {
+        if (!user) {
+          setFlashMessage({
+            type: "error",
+            message: "You need to sign in first!",
+          });
+          localStorage.setItem("requestedPath", "/admin");
+          window.location.href = "/admin/signin";
+        } else {
             setUserDetails({
                 fname: user.fname || "",
                 lname: user.lname || "",
                 email: user.email || "",
                 phone: user.phone || "",
             });
-        }
-    }, [user]);
+          
+          }
+        }, [user]);
 
     useEffect(() => {
         const storedUserDetails = JSON.parse(localStorage.getItem('userDetails'));
