@@ -24,7 +24,9 @@ export const Dashboard = () => {
                 email: user.email || "",
                 phone: user.phone || "",
             });
-        }
+        } else (
+            window.location.href = "/admin/signin"
+        )
     }, [user]);
 
     // useEffect(() => {
