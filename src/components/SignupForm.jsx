@@ -27,7 +27,7 @@ export const SignupForm = () => {
                 throw new Error("Both Passwords must match!");
             }
     
-            const response = await axios.post("https://grow-africa-api.vercel.app/admin/signup", formData, {
+            const response = await axios.post("https://grow-africa-api.vercel.app/send/admin/signup", formData, {
                 headers: { "Content-Type": "application/json" }
             });
     
@@ -71,7 +71,7 @@ export const SignupForm = () => {
         <Box className="h-screen mx-auto" margin="10px">
             <h1 className='text-center text-3xl text-pry hover:text-carton font-extrabold pt-6 pb-10'>Sign Up</h1>
                 {flashMessage && (
-                    <Box className={`text-${flashMessage.type} text-center my-3 text-blu`}>
+                    <Box className={`text-${flashMessage.type} text-center my-3 text-black`}>
                         {flashMessage.message}
                 </Box>
                 )}
