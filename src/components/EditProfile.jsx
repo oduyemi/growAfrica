@@ -47,7 +47,7 @@ export const EditProfile = () => {
 
     const updateUserData = async () => {
         try {
-            const response = await axios.put(`https://grow-africa-api-wine.vercel.app/admin/${user.id}`, {
+            const response = await axios.put(`https://grow-africa-api.vercel.app/admin/${user.id}`, {
                 first_name: userDetails.fname,
                 last_name: userDetails.lname,
                 email: userDetails.email,

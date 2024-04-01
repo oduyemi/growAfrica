@@ -27,7 +27,7 @@ export const SignupForm = () => {
                 throw new Error("Both Passwords must match!");
             }
     
-            const response = await axios.post("https://grow-africa-api-wine.vercel.app/admin/signup", formData, {
+            const response = await axios.post("https://grow-africa-api.vercel.app/admin/signup", formData, {
                 headers: { "Content-Type": "application/json" }
             });
     
