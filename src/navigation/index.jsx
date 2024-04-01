@@ -14,6 +14,7 @@ import Mail from "../pages/Mail";
 import Call from "../pages/Call";
 import WhatsApp from "../pages/WhatsApp";
 import EditAdminProfile from "../pages/EditAdminProfile";
+import Insta from "../pages/Insta";
 
 
 
@@ -34,6 +35,7 @@ export const Navigation = () => {
                     <Route path="/admin/shoppers" element={<Shoppers />} />
                     <Route path="/admin/vendors" element={<Vendors />} />
                     <Route path="/admin/preference-email" element={<Mail />} />
+                    <Route path="/admin/preference-instagram" element={<Insta />} />
                     <Route path="/admin/preference-phone-call" element={<Call />} />
                     <Route path="/admin/preference-whatsapp" element={<WhatsApp />} />
                 </Routes>

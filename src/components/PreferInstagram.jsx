@@ -5,7 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 
 
-export const VendorsList = () => {
+export const PreferInstagram = () => {
     return(
         <>
             <Box id="sideNav" className="lg:block hidden bg-carton w-full lg:w-64 h-screen fixed rounded-none border-none">
@@ -77,7 +77,7 @@ export const VendorsList = () => {
 
                 <Box className="bg-white rounded-xl p-4 shadow-md overflow-x-auto">
                     <Box className="px-4 py-2 text-left border-b-2 w-full">
-                        <Typography variant="h5" className="font-bold text-yellow-600">Vendors</Typography>
+                        <Typography variant="h5" className="font-bold text-yellow-600">Contact Preference: Phone Call</Typography>
                     </Box>
                     <table className="table-auto w-full">
                         <thead>
@@ -103,7 +103,7 @@ export const VendorsList = () => {
                                 </td>
                             
                                 <td className="">
-                                    <h2 className="font-bold text-gray-600">Contact Preference</h2>
+                                    <h2 className="font-bold text-gray-600">Shopper/Vendor</h2>
                                 </td>
                            
                                 <td className="">
@@ -188,10 +188,10 @@ export const VendorsList = () => {
                                             fontSize: "14px"
                                         }}
                                     >
-                                        WhatsApp
+                                        Shopper
                                     </Typography>
                                 </td>
-                           
+                            
                                 <td className="">
                                     <Typography 
                                         variant="h5"
@@ -201,7 +201,7 @@ export const VendorsList = () => {
                                             fontSize: "14px"
                                         }}
                                     >
-                                        LinkedIn
+                                        Instagram
                                     </Typography>
                                 </td>
                             </tr>
