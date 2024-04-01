@@ -14,7 +14,7 @@ dotenv.config();
 const app: Application = express();
 
 const corsOptions = {
-  origin: ["http://localhost:3000", "https://growafrica.shop"]
+  origin: ["http://localhost:3000", "https://growafrica.shop", "https://www.growafrica.shop"]
 };
 
 app.use(cors(corsOptions));

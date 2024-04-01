@@ -16,7 +16,7 @@ const db_1 = __importDefault(require("./db"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const corsOptions = {
-    origin: ["http://localhost:3000", "https://growafrica.shop"]
+    origin: ["http://localhost:3000", "https://growafrica.shop", "https://www.growafrica.shop"]
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use(body_parser_1.default.json());
