@@ -22,9 +22,9 @@ app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 // Routes
 app.use("/api", fetch_1.default);
-app.use("/send", send_1.default);
-app.use("/update", update_1.default);
-app.use("/erase", erase_1.default);
+app.use("/api/send", send_1.default);
+app.use("/api/update", update_1.default);
+app.use("/api/erase", erase_1.default);
 db_1.default.on("error", console.error.bind(console, "Mongodb Connection Error:"));
 app.use("/api", (0, http_proxy_middleware_1.createProxyMiddleware)({
     target: "http://192.168.43.113:3000/",
