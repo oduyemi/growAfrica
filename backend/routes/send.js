@@ -19,7 +19,6 @@ const adminModel_js_1 = __importDefault(require("../models/adminModel.js"));
 const mailingListModel_js_1 = __importDefault(require("../models/mailingListModel.js"));
 const router = express_1.default.Router();
 require("dotenv").config();
-const PIN_EXPIRY_TIME = 10 * 60 * 1000;
 router.post("/contact", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { fullname, email, phone, productInterest, shopperOrVendor, contactPreference, how } = req.body;
@@ -37,19 +36,19 @@ router.post("/contact", (req, res) => __awaiter(void 0, void 0, void 0, function
 }));
 router.post("/admin/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { fname, lname, email, phone, password, confirmPassword } = req.body;
-        if (![fname, lname, email, phone, password, confirmPassword].every((field) => field)) {
+        const { fname, lname, email, phone, pwd, cpwd } = req.body;
+        if (![fname, lname, email, phone, pwd, cpwd].every((field) => field)) {
             return res.status(400).json({ message: "All fields are required" });
         }
-        if (password !== confirmPassword) {
+        if (pwd !== cpwd) {
             return res.status(400).json({ message: "Both passwords must match!" });
         }
         const existingAdmin = yield adminModel_js_1.default.findOne({ email });
         if (existingAdmin) {
             return res.status(400).json({ message: "Email already registered" });
         }
-        const hashedPassword = yield (0, bcrypt_1.hash)(password, 10);
-        const newAdmin = new adminModel_js_1.default({ fname, lname, email, phone, password: hashedPassword });
+        const hashedPassword = yield (0, bcrypt_1.hash)(pwd, 10);
+        const newAdmin = new adminModel_js_1.default({ fname, lname, email, phone, pwd: hashedPassword });
         yield newAdmin.save();
         // Access token
         const token = jsonwebtoken_1.default.sign({
@@ -75,10 +74,10 @@ router.post("/admin/signup", (req, res) => __awaiter(void 0, void 0, void 0, fun
         return res.status(500).json({ message: "Error registering admin" });
     }
 }));
-router.post("/admin/login", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/admin/signin", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { email, password } = req.body;
-        if (![email, password].every((field) => field)) {
+        const { email, pwd } = req.body;
+        if (![email, pwd].every((field) => field)) {
             return res.status(400).json({ message: "All fields are required" });
         }
         try {
@@ -86,7 +85,7 @@ router.post("/admin/login", (req, res) => __awaiter(void 0, void 0, void 0, func
             if (!admin) {
                 return res.status(401).json({ message: "Email not registered. Please register first." });
             }
-            const isPasswordMatch = yield (0, bcrypt_1.compare)(password, admin.password);
+            const isPasswordMatch = yield (0, bcrypt_1.compare)(pwd, admin.pwd);
             if (!isPasswordMatch) {
                 return res.status(401).json({ message: "Incorrect email or password" });
             }

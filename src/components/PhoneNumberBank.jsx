@@ -37,13 +37,15 @@ export const PhoneNumberBank = () => {
                         <Box className="flex justify-center items-center space-x-5 h-full">
                             <Box>
                                 <Typography variant="h5" className="text-pry inline" paragraph>John Doe</Typography>&emsp; &emsp;
-                                <span className="inline text-right">
-                                    <EditIcon
-                                        sx={{
-                                            fontSize: 17
-                                        }}
-                                    />
-                                </span>
+                                    <span className="inline text-right">
+                                        <Link to="/admin/update">
+                                            <EditIcon
+                                                sx={{
+                                                    fontSize: 17
+                                                }}
+                                            />
+                                        </Link>
+                                    </span>
                                 <Typography variant="h6" paragraph>07055444778</Typography>
                                 
                             </Box>

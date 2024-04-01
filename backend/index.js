@@ -21,7 +21,7 @@ app.use((0, cors_1.default)(corsOptions));
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 // Routes
-app.use("/", fetch_1.default);
+app.use("/api", fetch_1.default);
 app.use("/send", send_1.default);
 app.use("/update", update_1.default);
 app.use("/erase", erase_1.default);
@@ -31,7 +31,7 @@ app.use("/api", (0, http_proxy_middleware_1.createProxyMiddleware)({
     changeOrigin: true,
 }));
 app.use(express_1.default.static("../src"));
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`);
 });

@@ -15,6 +15,7 @@ import Call from "../pages/Call";
 import WhatsApp from "../pages/WhatsApp";
 import EditAdminProfile from "../pages/EditAdminProfile";
 import Insta from "../pages/Insta";
+import PasswordReset from "../pages/PasswordReset";
 
 
 
@@ -28,6 +29,7 @@ export const Navigation = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/admin/signup" element={<AdminSignup />} />
                     <Route path="/admin/signin" element={<AdminSignin />} />
+                    <Route path="/admin/reset-password" element={<PasswordReset />} />
                     <Route path="/admin" element={<AdminDashboard />} />
                     <Route path="/admin/update" element={<EditAdminProfile />} />
                     <Route path="/admin/email-purse" element={<EmailList />} />

@@ -32,7 +32,7 @@ const adminSchema = new mongoose_1.default.Schema({
         type: String,
         required: true,
     },
-    password: {
+    pwd: {
         type: String,
         required: true,
     },
@@ -48,13 +48,13 @@ const adminSchema = new mongoose_1.default.Schema({
 adminSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         const admin = this;
-        if (!admin.isModified('password'))
+        if (!admin.isModified('pwd'))
             return next();
         const saltRounds = 10;
         try {
             const salt = yield bcrypt_1.default.genSalt(saltRounds);
-            const hashedPassword = yield bcrypt_1.default.hash(admin.password, salt);
-            admin.password = hashedPassword;
+            const hashedPassword = yield bcrypt_1.default.hash(admin.pwd, salt);
+            admin.pwd = hashedPassword;
             admin.salt = salt;
             return next();
         }
