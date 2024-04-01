@@ -1,4 +1,4 @@
-import "dotenv/config";
+import 'dotenv/config';
 
 
 const dbName = process.env.DB_NAME ||"growAfricadb";
