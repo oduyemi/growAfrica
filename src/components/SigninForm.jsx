@@ -46,7 +46,7 @@ export const SigninForm = () => {
                             type="email" 
                             name="email" 
                             className="border border-black mb-3 rounded-xl" 
-                            onChange={e => setFormData({...formData, email: e.target.value})} 
+                            onChange={handleChange} 
                             value={formData.email} 
                         />
                     <label htmlFor="pwd" className="text-gray-700">Password</label>
@@ -55,7 +55,7 @@ export const SigninForm = () => {
                         type={showPwd ? "text" : "password"} 
                         name="pwd" 
                         className="border border-black rounded-xl pr-32" 
-                        onChange={e => setFormData({...formData, pwd: e.target.value})} value={formData.pwd}
+                        onChange={handleChange}
                     />
                         <button 
                             type="button" 
