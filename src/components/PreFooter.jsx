@@ -34,39 +34,39 @@ export const PreFooter = () => {
             <Box className="flex items-center justify-between space-x-4 my-6">
                 <Box className="flex items-center justify-between space-x-4">
                     <Tooltip title="Facebook">
-                        <Link to="">
+                        <Link to="https://www.facebook.com/growafrica.shop?sfnsn=scwspwa&mibextid=RUbZ1f" target="_blank">
                             <FacebookIcon className="text-black"/>
                         </Link>
                     </Tooltip>
                 </Box>
-                <Box className="flex items-center justify-between space-x-4"> 
+                {/* <Box className="flex items-center justify-between space-x-4"> 
                     <Tooltip title="LinkedIn">  
                         <Link to="">
                             <LinkedInIcon className="text-black" />
                         </Link>
                     </Tooltip>
-                </Box>
+                </Box> */}
                 <Box className="flex items-center justify-between space-x-4">
                     <Tooltip title="Instagram">
-                        <Link to="">
+                        <Link to="https://www.instagram.com/growafrica.shop?utm_source=qr&igsh=MTN0ZGphZTJwZDk2Zw==" target="_blank">
                             <InstagramIcon  className="text-black"/>
                         </Link>
                     </Tooltip>
                 </Box>
                 <Box className="flex items-center justify-between space-x-4">
                     <Tooltip title="X">
-                        <Link to="">
-                            <XIcon className="text-black" />
+                        <Link to=" https://x.com/GrowAfrica92766?t=lwonOzF5T1g3djqFgmCLRQ&s=08" target="_blank">
+                            <XIcon className="text-black mr-10" />
                         </Link>
                     </Tooltip>
                 </Box>
-                <Box className="flex items-center justify-between space-x-4">
+                {/* <Box className="flex items-center justify-between space-x-4">
                     <Tooltip title="YouTube">
                         <Link to="">
                             <YouTubeIcon className="text-black mr-10" />
                         </Link>
                     </Tooltip>
-                </Box>
+                </Box> */}
             </Box>
         </Box>
         </Box>
