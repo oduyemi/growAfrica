@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
-require("dotenv").config();
+const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const http_proxy_middleware_1 = require("http-proxy-middleware");
 const fetch_1 = __importDefault(require("./routes/fetch"));
@@ -13,6 +13,7 @@ const send_1 = __importDefault(require("./routes/send"));
 const update_1 = __importDefault(require("./routes/update"));
 const erase_1 = __importDefault(require("./routes/erase"));
 const db_1 = __importDefault(require("./db"));
+dotenv_1.default.config();
 const app = (0, express_1.default)();
 const corsOptions = {
     origin: ["http://localhost:3000", "https://growafrica.shop"]
