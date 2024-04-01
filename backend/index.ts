@@ -1,6 +1,6 @@
 import express, { Application } from "express";
 import bodyParser from "body-parser";
-require("dotenv").config();
+import dotenv from "dotenv";
 import cors from "cors";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import fetchRouter from "./routes/fetch";
@@ -8,6 +8,8 @@ import sendRouter from "./routes/send";
 import updateRouter from "./routes/update";
 import eraseRouter from "./routes/erase";
 import db from "./db"; 
+
+dotenv.config();
 
 const app: Application = express();
 

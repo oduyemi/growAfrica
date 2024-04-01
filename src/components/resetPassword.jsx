@@ -4,7 +4,6 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Box } from "@mui/material";
 import axios from 'axios'
-import { Link } from "react-router-dom";
 
 export const ResetPasswordForm = () => {
     const [showOldPassword, setShowOldPassword] = useState(false);
