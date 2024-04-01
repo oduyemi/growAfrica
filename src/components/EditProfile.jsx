@@ -125,7 +125,7 @@ export const EditProfile = () => {
                     <Box className="bg-rosepink md:p-2 p-6 rounded-xl border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%]">
                         <Box className="flex justify-center items-center space-x-5 h-full">
                         <Box>
-                                <Typography variant="h5" className="text-pry inline" paragraph>{user.fname} {user.lname} </Typography>&emsp; &emsp;
+                                <Typography variant="h5" className="text-pry inline" paragraph>{user.fname} || Joe {user.lname} || Doe </Typography>&emsp; &emsp;
                                 <span className="inline text-right">
                                     <Link to="/admin/update">
                                         <EditIcon
@@ -135,7 +135,7 @@ export const EditProfile = () => {
                                         />
                                     </Link>
                                 </span>
-                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{user.phone}</Typography>
+                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{user.phone} </Typography>
                                 <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{user.email}</Typography>
                                 
                             </Box>
