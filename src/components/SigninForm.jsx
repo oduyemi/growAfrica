@@ -23,8 +23,32 @@ export const SigninForm = () => {
      const handleSubmit = async (e) => {
         e.preventDefault();
         setFormSubmitted(true); 
-        await handleLogin(formData.email, formData.pwd);
+        try {
+            const response = await fetch("https://grow-africa-api.vercel.app/send/admin/signin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
+            if (response.ok) {
+                handleLoginSuccess(data);
+            } else {
+                handleLoginFailure(data.message);
+            }
+        } catch (error) {
+            console.error("Error during sign-in:", error);
+        }
      };
+
+     const handleLoginSuccess = (data) => {
+        console.log("Login successful:", data);
+    };
+
+    const handleLoginFailure = (errorMessage) => {
+        console.error("Login failed:", errorMessage);
+    };
 
     const toggleShowPassword = () => {
         setShowPwd(!showPwd);
