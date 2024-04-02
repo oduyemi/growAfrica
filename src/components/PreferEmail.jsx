@@ -2,14 +2,15 @@ import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../UserContext";
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import Button from "../elements/Button";
 import EditIcon from '@mui/icons-material/Edit';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
 
 
 
 export const PreferEmail = () => {
-    const { user, setUser } = useContext(UserContext);
-    const [flashMessage, setFlashMessage] = useState(null)
+    const { user, handleSignout } = useContext(UserContext);
     const [userDetails, setUserDetails] = useState({
         fname: "",
         lname: "",
@@ -59,6 +60,12 @@ export const PreferEmail = () => {
                     <Link to="#" className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
                         <span><Link to="/admin/vendors" className="hover:text-red-600">Vendors</Link></span>
                     </Link>
+                    <Button onClick={handleSignout}>
+                        Signout {" "}
+                        <span> 
+                            <PowerSettingsNewIcon />
+                        </span>
+                    </Button>
                 </Box>
             </Box>
 

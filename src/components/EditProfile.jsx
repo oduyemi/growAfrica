@@ -4,13 +4,14 @@ import { UserContext } from "../UserContext";
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import Button from "../elements/Button";
 
 
 
 
 export const EditProfile = () => {
-    const { user, setUser } = useContext(UserContext);
+    const { user, setUser, handleSignout } = useContext(UserContext);
     const [flashMessage, setFlashMessage] = useState(null)
     const [userDetails, setUserDetails] = useState({
         fname: "",
@@ -116,6 +117,13 @@ export const EditProfile = () => {
                     <Link to="#" className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
                         <span><Link to="/admin/vendors" className="hover:text-red-600">Vendors</Link></span>
                     </Link>
+
+                    <Button onClick={handleSignout}>
+                        Signout {" "}
+                        <span> 
+                            <PowerSettingsNewIcon />
+                        </span>
+                    </Button>
                 </Box>
             </Box>
 
