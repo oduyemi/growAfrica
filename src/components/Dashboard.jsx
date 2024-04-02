@@ -76,8 +76,8 @@ export const Dashboard = () => {
                                         />
                                     </Link>
                                 </span>
-                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{user.phone}</Typography>
-                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{user.email}</Typography>
+                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{userDetails.phone}</Typography>
+                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{userDetails.email}</Typography>
                                 
                             </Box>
                         </Box>
