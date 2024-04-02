@@ -78,13 +78,13 @@ export const SignupForm = () => {
             <form className="max-w-sm mx-auto w-full" onSubmit={handleSubmit}>
                 <Box className="flex flex-col pt-10">
                     <label htmlFor="fname" className="text-gray-700">First Name</label>
-                    <input type="text" name="fname" className="border border-black mb-3 rounded-md" onChange={e => setFormData({...formData, fname: e.target.value})} value={formData.fname} />
+                    <input type="text" name="fname" className="border border-black mb-3 rounded-md pl-2" onChange={e => setFormData({...formData, fname: e.target.value})} value={formData.fname} />
                     <label htmlFor="lname" className="text-gray-700">Last Name</label>
-                    <input type="text" name="lname" className="border border-black mb-3 rounded-md" onChange={e => setFormData({...formData, lname: e.target.value})} value={formData.lname} />
+                    <input type="text" name="lname" className="border border-black mb-3 rounded-md pl-2" onChange={e => setFormData({...formData, lname: e.target.value})} value={formData.lname} />
                     <label htmlFor="email" className="text-gray-700">Email</label>
-                    <input type="email" name="email" className="border border-black mb-3 rounded-md" onChange={e => setFormData({...formData, email: e.target.value})} value={formData.email} />
+                    <input type="email" name="email" className="border border-black mb-3 rounded-md pl-2" onChange={e => setFormData({...formData, email: e.target.value})} value={formData.email} />
                     <label htmlFor="phone" className="text-gray-700">Phone</label>
-                    <input type="number" name="email" className="border border-black mb-3 rounded-md" onChange={e => setFormData({...formData, phone: e.target.value})} value={formData.phone} />
+                    <input type="number" name="email" className="border border-black mb-3 rounded-md pl-2" onChange={e => setFormData({...formData, phone: e.target.value})} value={formData.phone} />
                     <label htmlFor="pwd" className="text-gray-700">Password</label>
                     <Box className="relative">
                     <input 

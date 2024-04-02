@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Button from "../elements/Button";
 import EditIcon from '@mui/icons-material/Edit';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import axios from "axios";
 
 
 
@@ -17,6 +18,7 @@ export const PhoneNumberBank = () => {
         email: "",
         phone: ""
     });
+    const [phoneNumbersData, setPhoneNumbersData] = useState([]); 
 
     useEffect(() => {
         if (user) {
@@ -27,8 +29,8 @@ export const PhoneNumberBank = () => {
                 phone: user.phone || "",
             });
         } else {
-            console.log("User is null")
-            window.location.href = "/admin/signin"
+            console.log("User is null");
+            window.location.href = "/admin/signin";
         } 
     }, [user]);
 
@@ -38,6 +40,19 @@ export const PhoneNumberBank = () => {
             setUserDetails(storedUserDetails);
         }
     }, []);
+
+    useEffect(() => {
+        fetchPhoneNumbersData();
+    }, []);
+
+    const fetchPhoneNumbersData = async () => {
+        try {
+            const response = await axios.get("https://grow-africa-api.vercel.app/contact/numbers");
+            setPhoneNumbersData(response.data.data);
+        } catch (error) {
+            console.error("Error fetching phone numbers data from the server", error);
+        }
+    };
     return(
         <>
             <Box id="sideNav" className="lg:block hidden bg-carton w-full lg:w-64 h-screen fixed rounded-none border-none">
@@ -139,46 +154,48 @@ export const PhoneNumberBank = () => {
                         </thead>
 
                         <tbody>
-                            <tr className="border-b w-full">
-                                <td className="">
-                                    <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            1
-                                        </Typography>
-                                </td>
+                            {phoneNumbersData.map((item, index) => (
+                                <tr key={index} className="border-b w-full">
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {index + 1}
+                                            </Typography>
+                                    </td>
 
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            Solomon Edem
-                                        </Typography>
-                                </td>
-                           
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            08166344534
-                                        </Typography>
-                                </td>
-                            </tr>
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {item.fullname}
+                                            </Typography>
+                                    </td>
+                            
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {item.phone}
+                                            </Typography>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </Box>

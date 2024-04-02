@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import Button from "../elements/Button";
 import EditIcon from '@mui/icons-material/Edit';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import axios from "axios";
+
 
 
 
@@ -17,6 +19,7 @@ export const VendorsList = () => {
         email: "",
         phone: ""
     });
+    const [vendorsData, setVendorsData] = useState([]);
 
     useEffect(() => {
         if (user) {
@@ -38,6 +41,19 @@ export const VendorsList = () => {
             setUserDetails(storedUserDetails);
         }
     }, []);
+
+    useEffect(() => {
+        fetchVendorsData();
+    }, []);
+
+    const fetchVendorsData = async () => {
+        try {
+            const response = await axios.get("https://grow-africa-api.vercel.app/contact/vendors");
+            setVendorsData(response.data.data);
+        } catch (error) {
+            console.error("Error fetching vendors data from the server", error);
+        }
+    };
 
     return(
         <>
@@ -155,98 +171,100 @@ export const VendorsList = () => {
                         </thead>
 
                         <tbody>
-                            <tr className="border-b w-full">
-                                <td className="">
-                                    <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            1
-                                        </Typography>
-                                </td>
+                            {vendorsData.map((vendor, index) => (
+                                <tr key={index} className="border-b w-full">
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {index + 1}
+                                            </Typography>
+                                    </td>
 
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            Solomon Edem
-                                        </Typography>
-                                </td>
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {vendor.fullname}
+                                            </Typography>
+                                    </td>
                             
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            youremail@gmail.com
-                                        </Typography>
-                                </td>
-                           
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            08166344534
-                                        </Typography>
-                                </td>
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {vendor.email}
+                                            </Typography>
+                                    </td>
                             
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            Vehicle
-                                        </Typography>
-                                </td>
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {vendor.phone}
+                                            </Typography>
+                                    </td>
                             
-                                <td className="">
-                                    <Typography 
-                                        variant="h5"
-                                        paragraph 
-                                        className=""
-                                        sx={{
-                                            fontSize: "14px"
-                                        }}
-                                    >
-                                        WhatsApp
-                                    </Typography>
-                                </td>
-                           
-                                <td className="">
-                                    <Typography 
-                                        variant="h5"
-                                        paragraph 
-                                        className=""
-                                        sx={{
-                                            fontSize: "14px"
-                                        }}
-                                    >
-                                        LinkedIn
-                                    </Typography>
-                                </td>
-                            </tr>
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {vendor.productInterest}
+                                            </Typography>
+                                    </td>
+                            
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {vendor.contactPreference}
+                                            </Typography>
+                                    </td>
+                            
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {vendor.how}
+                                            </Typography>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </Box>

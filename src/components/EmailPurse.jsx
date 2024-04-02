@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import Button from "../elements/Button";
 import EditIcon from '@mui/icons-material/Edit';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import axios from "axios";
+
 
 
 
@@ -14,9 +16,9 @@ export const EmailPurse = () => {
     const [userDetails, setUserDetails] = useState({
         fname: "",
         lname: "",
-        email: "",
-        phone: ""
+        email: ""
     });
+    const [emailsData, setEmailsData] = useState([]); 
 
     useEffect(() => {
         if (user) {
@@ -27,8 +29,8 @@ export const EmailPurse = () => {
                 phone: user.phone || "",
             });
         } else {
-            console.log("User is null")
-            window.location.href = "/admin/signin"
+            console.log("User is null");
+            window.location.href = "/admin/signin";
         } 
     }, [user]);
 
@@ -38,6 +40,20 @@ export const EmailPurse = () => {
             setUserDetails(storedUserDetails);
         }
     }, []);
+
+    useEffect(() => {
+        fetchEmailsData();
+    }, []);
+
+    const fetchEmailsData = async () => {
+        try {
+            const response = await axios.get("https://grow-africa-api.vercel.app/contact/emails");
+            setEmailsData(response.data.data);
+        } catch (error) {
+            console.error("Error fetching emails data from the server", error);
+        }
+    };
+
 
     return(
         <>
@@ -138,48 +154,49 @@ export const EmailPurse = () => {
                                 </td>
                             </tr>
                         </thead>
-
                         <tbody>
-                            <tr className="border-b w-full">
-                                <td className="">
-                                    <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            1
-                                        </Typography>
-                                </td>
+                            {emailsData.map((item, index) => (
+                                <tr key={index} className="border-b w-full">
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {index + 1}
+                                            </Typography>
+                                    </td>
 
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            Solomon Edem
-                                        </Typography>
-                                </td>
-                            
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            youremail@gmail.com
-                                        </Typography>
-                                </td>
-                            </tr>
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {item.fullname}
+                                            </Typography>
+                                    </td>
+                                
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {item.email}
+                                            </Typography>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </Box>

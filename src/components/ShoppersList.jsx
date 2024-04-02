@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import Button from "../elements/Button";
 import EditIcon from '@mui/icons-material/Edit';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import axios from "axios";
+
 
 
 
@@ -17,6 +19,7 @@ export const ShoppersList = () => {
         email: "",
         phone: ""
     });
+    const [shoppersData, setShoppersData] = useState([]); 
 
     useEffect(() => {
         if (user) {
@@ -27,8 +30,8 @@ export const ShoppersList = () => {
                 phone: user.phone || "",
             });
         } else {
-            console.log("User is null")
-            window.location.href = "/admin/signin"
+            console.log("User is null");
+            window.location.href = "/admin/signin";
         } 
     }, [user]);
 
@@ -38,6 +41,19 @@ export const ShoppersList = () => {
             setUserDetails(storedUserDetails);
         }
     }, []);
+
+    useEffect(() => {
+        fetchShoppersData();
+    }, []);
+
+    const fetchShoppersData = async () => {
+        try {
+            const response = await axios.get("https://grow-africa-api.vercel.app/contact/shoppers");
+            setShoppersData(response.data.data);
+        } catch (error) {
+            console.error("Error fetching shoppers data from the server", error);
+        }
+    };
 
     return(
         <>
@@ -155,98 +171,100 @@ export const ShoppersList = () => {
                         </thead>
 
                         <tbody>
-                            <tr className="border-b w-full">
-                                <td className="">
-                                    <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            1
-                                        </Typography>
-                                </td>
+                            {shoppersData.map((shopper, index) => (
+                                <tr key={index} className="border-b w-full">
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {index + 1}
+                                            </Typography>
+                                    </td>
 
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            Solomon Edem
-                                        </Typography>
-                                </td>
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {shopper.fullname}
+                                            </Typography>
+                                    </td>
                             
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            youremail@gmail.com
-                                        </Typography>
-                                </td>
-                           
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            08166344534
-                                        </Typography>
-                                </td>
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {shopper.email}
+                                            </Typography>
+                                    </td>
                             
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            Vehicle
-                                        </Typography>
-                                </td>
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {shopper.phone}
+                                            </Typography>
+                                    </td>
                             
-                                <td className="">
-                                    <Typography 
-                                        variant="h5"
-                                        paragraph 
-                                        className=""
-                                        sx={{
-                                            fontSize: "14px"
-                                        }}
-                                    >
-                                        WhatsApp
-                                    </Typography>
-                                </td>
-                           
-                                <td className="">
-                                    <Typography 
-                                        variant="h5"
-                                        paragraph 
-                                        className=""
-                                        sx={{
-                                            fontSize: "14px"
-                                        }}
-                                    >
-                                        LinkedIn
-                                    </Typography>
-                                </td>
-                            </tr>
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {shopper.productInterest}
+                                            </Typography>
+                                    </td>
+                            
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {shopper.contactPreference}
+                                            </Typography>
+                                    </td>
+                            
+                                    <td className="">
+                                        <Typography 
+                                                variant="h5"
+                                                paragraph 
+                                                className=""
+                                                sx={{
+                                                    fontSize: "14px"
+                                                }}
+                                            >
+                                                {shopper.how}
+                                            </Typography>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </Box>

@@ -23,7 +23,7 @@ export const SigninForm = () => {
      const handleSubmit = async (e) => {
         e.preventDefault();
         setFormSubmitted(true); 
-        await handleLogin(formData.email, formData.pwd); // Wait for login process
+        await handleLogin(formData.email, formData.pwd);
      };
 
     const toggleShowPassword = () => {
@@ -34,7 +34,7 @@ export const SigninForm = () => {
         <Box className="h-screen mx-auto" margin="10px">
             <h1 className='text-center text-pry text-3xl hover:text-carton font-extrabold pt-10 pb-10'>Sign In</h1>
             {flashMessage && (
-                <Box className={`text-${flashMessage.type} text-center my-3 text-black`}>
+                <Box className={`text-${flashMessage.type} text-center my-3 text-red-700`}>
                     {flashMessage.message}
                 </Box>
             )}
@@ -44,7 +44,7 @@ export const SigninForm = () => {
                         <input 
                             type="email" 
                             name="email" 
-                            className="border border-black mb-3 rounded-xl" 
+                            className="border border-black mb-3 rounded-xl pl-2" 
                             onChange={handleChange} 
                             value={formData.email} 
                         />
@@ -53,7 +53,7 @@ export const SigninForm = () => {
                         <input 
                             type={showPwd ? "text" : "password"} 
                             name="pwd" 
-                            className="border border-black rounded-xl pr-32" 
+                            className="border border-black rounded-xl pr-32 pl-2" 
                             onChange={handleChange}
                         />
                         <button 

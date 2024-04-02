@@ -1,9 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import { Box, Typography } from "@mui/material";
 import Button from "../elements/Button";
+import axios from "axios";
+
+
+
+
 
 const PopupForm = ({ open, onClose }) => {
+  const [formData, setFormData] = useState({
+    fullname: "",
+    email: "",
+    phone: "",
+    productInterest: "",
+    shopperOrVendor: "",
+    contactPreference: "",
+    how: ""
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("https://grow-africa-api.vercel.app/send/contact", formData);
+      console.log(response.data.message); 
+      onClose(); 
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+
   return (
     <Modal isOpen={open} onRequestClose={onClose} className="Modal">
       <Box className="grid items-center justify-center bg-gray-900 bg-opacity-75">
@@ -49,13 +79,15 @@ const PopupForm = ({ open, onClose }) => {
                 Please enter your name and email address.
               </Typography>
             </Box>
-            <form>
+            <form onSubmit={handleSubmit}>
               <Box width="100%" maxWidth="400px" margin="auto">
                 <Box className="mb-2">
                   <label htmlFor="fullname" className="text-xs font-semibold px-1">Enter Full Name</label>
                   <input
                     type="text"
                     name="fullname"
+                    value={formData.fullname}
+                    onChange={handleChange}
                     className="
                       w-full px-3 py-2 rounded-xl
                       border-2 border-gray-200 outline-none
@@ -75,6 +107,8 @@ const PopupForm = ({ open, onClose }) => {
                       focus:border-green-700
                     "
                     placeholder="e.g youremail@gmail.com"
+                    onChange={handleChange}
+                    value={formData.email}
                   />
                 </Box>
                 <Box className="mb-2">
@@ -101,6 +135,8 @@ const PopupForm = ({ open, onClose }) => {
                       focus:border-green-700
                     "
                     placeholder="What is Your Interest About The Product?"
+                    onChange={handleChange}
+                    value={formData.productInterest}
                   />
                 </Box>
                 <Box className="mb-2">
@@ -112,6 +148,8 @@ const PopupForm = ({ open, onClose }) => {
                       border-2 border-gray-200 outline-none
                       focus:border-green-700
                     "
+                    onChange={handleChange}
+                    value={formData.shopperOrVendor}
                   >
                     <option value="">Choose an option</option>
                     <option value="shopper">Shopper</option>
@@ -127,6 +165,8 @@ const PopupForm = ({ open, onClose }) => {
                       border-2 border-gray-200 outline-none
                       focus:border-green-700
                     "
+                    onChange={handleChange}
+                    value={formData.contactPreference}
                   >
                     <option value="">Select Your Preferred Communication Method</option>
                     <option value="email">Email</option>
@@ -144,6 +184,8 @@ const PopupForm = ({ open, onClose }) => {
                       border-2 border-gray-200 outline-none
                       focus:border-green-700
                     "
+                    onChange={handleChange}
+                    value={formData.how}
                   >
                     <option value="">How Did You Hear About Us?</option>
                     <option value="whatsapp">WhatsApp</option>
@@ -156,6 +198,7 @@ const PopupForm = ({ open, onClose }) => {
                 </Box>
                 <Box className="mb-2">
                   <Button
+                    type="submit"
                     className="
                       block w-full px-3 py-3 rounded-xl
                       text-white font-semibold

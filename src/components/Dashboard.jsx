@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import Button from "../elements/Button";
+import axios from "axios";
+
+
 
 
 
@@ -16,6 +19,7 @@ export const Dashboard = () => {
         email: "",
         phone: ""
     });
+    const [contacts, setContacts] = useState([]);
 
     useEffect(() => {
         if (user) {
@@ -37,6 +41,20 @@ export const Dashboard = () => {
             setUserDetails(storedUserDetails);
         }
     }, []);
+
+    useEffect(() => {
+        const fetchContacts = async () => {
+            try {
+                const response = await axios.get("/contacts");
+                setContacts(response.data.data);
+            } catch (error) {
+                console.error("Error fetching contacts:", error);
+            }
+        };
+
+        fetchContacts();
+    }, []);
+    
     return(
         <>
             <Box id="sideNav" className="lg:block hidden bg-carton w-full lg:w-64 h-screen fixed rounded-none border-none">
@@ -157,19 +175,11 @@ export const Dashboard = () => {
                         </thead>
 
                         <tbody>
-                            <tr className="border-b w-full">
-                                <td className="">
-                                    <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            1
-                                        </Typography>
-                                </td>
+                            {contacts.map((contact, index) => (
+                                <tr key={index} className="border-b w-full">
+                                    <td className="">
+                                        <Typography variant="h5" paragraph className="" sx={{ fontSize: "14px" }}>{index + 1}</Typography>
+                                    </td>
 
                                 <td className="">
                                 <Typography 
@@ -180,7 +190,7 @@ export const Dashboard = () => {
                                                 fontSize: "14px"
                                             }}
                                         >
-                                            Solomon Edem
+                                            {contact.fullname}
                                         </Typography>
                                 </td>
                             
@@ -206,7 +216,7 @@ export const Dashboard = () => {
                                                 fontSize: "14px"
                                             }}
                                         >
-                                            08166344534
+                                            {contact.phone}
                                         </Typography>
                                 </td>
                             
@@ -219,7 +229,7 @@ export const Dashboard = () => {
                                                 fontSize: "14px"
                                             }}
                                         >
-                                            Vehicle
+                                            {contact.productInterest}
                                         </Typography>
                                 </td>
                             
@@ -232,7 +242,7 @@ export const Dashboard = () => {
                                             fontSize: "14px"
                                         }}
                                     >
-                                        Shopper
+                                        {contact.shopperOrVendor}
                                     </Typography>
                                 </td>
                             
@@ -245,7 +255,7 @@ export const Dashboard = () => {
                                             fontSize: "14px"
                                         }}
                                     >
-                                        WhatsApp
+                                        {contact.contactPreference}
                                     </Typography>
                                 </td>
                            
@@ -258,10 +268,11 @@ export const Dashboard = () => {
                                             fontSize: "14px"
                                         }}
                                     >
-                                        Phone Call
+                                        {contact.how}
                                     </Typography>
                                 </td>
                             </tr>
+                            ))}
                         </tbody>
                     </table>
                 </Box>
