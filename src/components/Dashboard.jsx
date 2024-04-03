@@ -31,7 +31,6 @@ export const Dashboard = () => {
             });
         } else {
             console.log("User is null")
-            window.location.href = "/admin"
         } 
     }, [user]);
 
@@ -64,16 +63,16 @@ export const Dashboard = () => {
                         <span className="-mr-1 font-medium">{" "}Dashboard</span>
                     </Link>
 
-                    <Link to="#" className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+                    <Link to="/admin/email-purse" className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
                         <span><Link to="/admin/email-purse" className="hover:text-red-600">Email Purse</Link></span>
                     </Link>
-                    <Link to="#" className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+                    <Link to="/admin/phone-bank" className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
                         <span><Link to="/admin/phone-bank" className="hover:text-red-600">Phone Number Bank</Link></span>
                     </Link>
-                    <Link to="#" className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+                    <Link to="/admin/shoppers" className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
                         <span><Link to="/admin/shoppers" className="hover:text-red-600">Shoppers</Link></span>
                     </Link>
-                    <Link to="#" className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
+                    <Link to="/admin/vendors" className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-500 group">
                         <span><Link to="/admin/vendors" className="hover:text-red-600">Vendors</Link></span>
                     </Link>
                     <Button onClick={handleSignout}>
