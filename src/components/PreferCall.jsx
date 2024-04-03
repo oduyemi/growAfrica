@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import Button from "../elements/Button";
 import EditIcon from '@mui/icons-material/Edit';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-
-
+import axios from "axios";
 
 
 export const PreferCall = () => {
     const { user, handleSignout } = useContext(UserContext);
+    const [phonePreferences, setPhonePreferences] = useState([]);
     const [userDetails, setUserDetails] = useState({
         fname: "",
         lname: "",
@@ -37,6 +37,19 @@ export const PreferCall = () => {
         if (storedUserDetails) {
             setUserDetails(storedUserDetails);
         }
+    }, []);
+
+    useEffect(() => {
+        const fetchPhonePreferences = async () => {
+            try {
+                const response = await axios.get("https://grow-africa-api.vercel.app/contact/preference/phone");
+                setPhonePreferences(response.data.data);
+            } catch (error) {
+                console.error("Error fetching phone Preferences:", error);
+            }
+        };
+
+        fetchPhonePreferences();
     }, []);
 
     return(
@@ -155,98 +168,18 @@ export const PreferCall = () => {
                         </thead>
 
                         <tbody>
-                            <tr className="border-b w-full">
-                                <td className="">
-                                    <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            1
-                                        </Typography>
-                                </td>
-
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            Solomon Edem
-                                        </Typography>
-                                </td>
-                            
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            youremail@gmail.com
-                                        </Typography>
-                                </td>
-                           
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            08166344534
-                                        </Typography>
-                                </td>
-                            
-                                <td className="">
-                                <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            Vehicle
-                                        </Typography>
-                                </td>
-                            
-                                <td className="">
-                                    <Typography 
-                                        variant="h5"
-                                        paragraph 
-                                        className=""
-                                        sx={{
-                                            fontSize: "14px"
-                                        }}
-                                    >
-                                        Shopper
-                                    </Typography>
-                                </td>
-                            
-                                <td className="">
-                                    <Typography 
-                                        variant="h5"
-                                        paragraph 
-                                        className=""
-                                        sx={{
-                                            fontSize: "14px"
-                                        }}
-                                    >
-                                        Phone Call
-                                    </Typography>
-                                </td>
-                            </tr>
+                            {phonePreferences.map((preference, index) => (
+                                <tr key={index} className="border-b w-full">
+                                    <td>{index + 1}</td>
+                                    <td>{preference.fullname}</td>
+                                    <td>{preference.email}</td>
+                                    <td>{preference.phone}</td>
+                                    <td>{preference.productInterest}</td>
+                                    <td>{preference.shopperOrVendor}</td>
+                                    <td>{preference.contactPreference}</td>
+                                    <td>{preference.how}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </Box>

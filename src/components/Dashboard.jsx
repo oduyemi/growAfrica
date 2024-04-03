@@ -203,7 +203,7 @@ export const Dashboard = () => {
                                                 fontSize: "14px"
                                             }}
                                         >
-                                            youremail@gmail.com
+                                            {contact.email}
                                         </Typography>
                                 </td>
                            

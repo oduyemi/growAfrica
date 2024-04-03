@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import Button from "../elements/Button";
 import EditIcon from '@mui/icons-material/Edit';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-
-
+import axios from "axios";
 
 
 export const PreferEmail = () => {
@@ -17,6 +16,7 @@ export const PreferEmail = () => {
         email: "",
         phone: ""
     });
+    const [emailPreferences, setEmailPreferences] = useState([]);
 
     useEffect(() => {
         if (user) {
@@ -39,6 +39,20 @@ export const PreferEmail = () => {
         }
     }, []);
 
+    useEffect(() => {
+        const fetchEmailPreferences = async () => {
+            try {
+                const response = await axios.get("https://grow-africa-api.vercel.app/contact/preference/email");
+                setEmailPreferences(response.data.data);
+            } catch (error) {
+                console.error("Error fetching Email Preferences:", error);
+            }
+        };
+
+        fetchEmailPreferences();
+    }, []);
+
+   
     return(
         <>
             <Box id="sideNav" className="lg:block hidden bg-carton w-full lg:w-64 h-screen fixed rounded-none border-none">
@@ -155,19 +169,11 @@ export const PreferEmail = () => {
                         </thead>
 
                         <tbody>
-                            <tr className="border-b w-full">
-                                <td className="">
-                                    <Typography 
-                                            variant="h5"
-                                            paragraph 
-                                            className=""
-                                            sx={{
-                                                fontSize: "14px"
-                                            }}
-                                        >
-                                            1
-                                        </Typography>
-                                </td>
+                            {emailPreferences.map((preference, index) => (
+                                <tr key={index} className="border-b w-full">
+                                    <td className="">
+                                        <Typography variant="h5" paragraph className="" sx={{ fontSize: "14px" }}>{index + 1}</Typography>
+                                    </td>
 
                                 <td className="">
                                 <Typography 
@@ -178,7 +184,7 @@ export const PreferEmail = () => {
                                                 fontSize: "14px"
                                             }}
                                         >
-                                            Solomon Edem
+                                            {preference.fullname}
                                         </Typography>
                                 </td>
                             
@@ -191,7 +197,7 @@ export const PreferEmail = () => {
                                                 fontSize: "14px"
                                             }}
                                         >
-                                            youremail@gmail.com
+                                            {preference.email}
                                         </Typography>
                                 </td>
                            
@@ -204,7 +210,7 @@ export const PreferEmail = () => {
                                                 fontSize: "14px"
                                             }}
                                         >
-                                            08166344534
+                                            {preference.phone}
                                         </Typography>
                                 </td>
                             
@@ -217,7 +223,7 @@ export const PreferEmail = () => {
                                                 fontSize: "14px"
                                             }}
                                         >
-                                            Vehicle
+                                            {preference.productInterest}
                                         </Typography>
                                 </td>
                             
@@ -230,10 +236,10 @@ export const PreferEmail = () => {
                                             fontSize: "14px"
                                         }}
                                     >
-                                        Shopper
+                                        {preference.shopperOrVendor}
                                     </Typography>
                                 </td>
- 
+                            
                                 <td className="">
                                     <Typography 
                                         variant="h5"
@@ -243,11 +249,13 @@ export const PreferEmail = () => {
                                             fontSize: "14px"
                                         }}
                                     >
-                                        Email
+                                        {preference.how}
                                     </Typography>
                                 </td>
                             </tr>
+                            ))}
                         </tbody>
+
                     </table>
                 </Box>
             </Box>
