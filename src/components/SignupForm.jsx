@@ -16,14 +16,14 @@ export const SignupForm = () => {
         lname: "",
         email: "",
         phone: "",
-        pwd: "",
+        password: "",
         cpwd: ""
     });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            if (formData.pwd !== formData.cpwd) {
+            if (formData.password !== formData.cpwd) { // Change formData.pwd to formData.password
                 throw new Error("Both Passwords must match!");
             }
     
@@ -58,8 +58,9 @@ export const SignupForm = () => {
     
             setFlashMessage({ type: "error", message: errorMessage });
         }
-
+    
     }
+    
     const toggleShowPassword = () => {
         setShowPwd(!showPwd)
     }
@@ -90,8 +91,8 @@ export const SignupForm = () => {
                     <input 
                         type={showPwd ? "text" : "password"} 
                         name="pwd" className="rounded-md border border-black  pr-32" 
-                        onChange={e => setFormData({...formData, pwd: e.target.value})} 
-                        value={formData.pwd} 
+                        onChange={e => setFormData({...formData, password: e.target.value})} 
+                        value={formData.password} 
                     />
                         <button 
                             type="button" 

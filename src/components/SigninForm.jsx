@@ -1,3 +1,4 @@
+
 import React, { useState, useContext } from "react";
 import { UserContext } from "../UserContext";
 import { Box } from "@mui/material";
@@ -8,51 +9,33 @@ import { Link } from "react-router-dom";
 
 export const SigninForm = () => {
     const { handleLogin, flashMessage } = useContext(UserContext);
-    const [showPwd, setShowPwd] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const [formData, setFormData] = useState({
         email: "",
-        pwd: "",
+        password: "",
      });
      const [formSubmitted, setFormSubmitted] = useState(false);
 
-     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-     };
+     const toggleShowPassword = () => {
+        setShowPassword(!showPassword)
+    }
 
-     const handleSubmit = async (e) => {
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setFormSubmitted(true); 
-        try {
-            const response = await fetch("https://grow-africa-api.vercel.app/send/admin/signin", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            });
-            const data = await response.json();
-            if (response.ok) {
-                handleLoginSuccess(data);
-            } else {
-                handleLoginFailure(data.message);
-            }
-        } catch (error) {
-            console.error("Error during sign-in:", error);
-        }
-     };
-
-     const handleLoginSuccess = (data) => {
-        console.log("Login successful:", data);
+        const success = await handleLogin(formData.email, formData.password);
+        if (success) {
+            const requestedPath = localStorage.getItem("requestedPath");
+            window.location.href = requestedPath ? requestedPath : "/dashboard";
+          }
     };
 
-    const handleLoginFailure = (errorMessage) => {
-        console.error("Login failed:", errorMessage);
-    };
-
-    const toggleShowPassword = () => {
-        setShowPwd(!showPwd);
-    };
+    console.log("flashMessage:", flashMessage); 
 
     return (
         <Box className="h-screen mx-auto" margin="10px">
@@ -72,20 +55,21 @@ export const SigninForm = () => {
                             onChange={handleChange} 
                             value={formData.email} 
                         />
-                    <label htmlFor="pwd" className="text-gray-700">Password</label>
+                    <label htmlFor="password" className="text-gray-700">Password</label>
                     <Box className="relative">
                         <input 
-                            type={showPwd ? "text" : "password"} 
-                            name="pwd" 
+                            type={showPassword ? "text" : "password"} 
+                            name="password" 
                             className="border border-black rounded-xl pr-32 pl-2" 
                             onChange={handleChange}
+                            value={formData.password}
                         />
                         <button 
                             type="button" 
                             className="absolute inset-y-0 right-0 pr-2 flex items-center" 
                             onClick={toggleShowPassword}
                         >
-                            {showPwd ? <VisibilityIcon /> : <VisibilityOffIcon />} 
+                            {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />} 
                         </button>
                     </Box>
                     <Button type="submit" className="h-8 mt-5 text-white">Sign In</Button>

@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import Button from "../elements/Button";
 import Modal from "react-modal";
-import { PopupForm } from "./PopupForm";
-
+import { PopupForm }  from "./PopupForm";
 
 export const Banner = () => {
     const [popupOpen, setPopupOpen] = useState(false);

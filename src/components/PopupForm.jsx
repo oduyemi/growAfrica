@@ -37,7 +37,7 @@ const PopupForm = ({ open, onClose }) => {
 
   return (
     <Modal isOpen={open} onRequestClose={onClose} className="Modal">
-      <Box className="grid items-center justify-center bg-gray-900 bg-opacity-75">
+      <Box className="grid items-center justify-center bg-white bg-opacity-75">
         <Box className="formbox bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full">
             <button
                 onClick={onClose}
@@ -58,7 +58,7 @@ const PopupForm = ({ open, onClose }) => {
                 />
                 </svg>
             </button>
-          <Box className="py-5 px-5 md:px-10">
+          <Box className="py-5 px-5 md:px-10 my-10">
             <Box className="text-center mb-3">
               <Typography
                 variant="h4"

@@ -1,8 +1,10 @@
 import { Box } from "@mui/material"
 import './App.css';
-import { Navigation } from './navigation';
+import { Navigation } from "./navigation"
 
-function App() {
+
+
+function App() { 
   return (
     <Box className="App">
       <Navigation />

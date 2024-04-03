@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { Banner } from "../../components/Banner";
+import { Banner } from "../../components/Banner"
 import { BoxImages } from "../../components/BoxImages";
 import { CountDown } from "../../components/CountDown";
 import { Join } from "../../components/Join";
@@ -19,7 +19,7 @@ const Home = () => {
            <Banner />
            <WhoWeAre />
            <BoxImages />
-           <Join />
+           {/* <Join /> */}
            <Box className="p-10 bg-[#01562A] my-10 flex justify-center items-center">
                 <Box>
                 <CountDown />

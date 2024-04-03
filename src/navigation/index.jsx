@@ -1,8 +1,9 @@
+
 import React from "react";
 import { UserProvider } from "../UserContext";
 import { Routes, Route } from "react-router-dom";
 import { Header } from "../components/Header";
-import Home from "../pages/Home/index"
+import Home from "../pages/Home";
 import AdminSignup from "../pages/AdminSignup";
 import AdminSignin from "../pages/AdminSignin";
 import AdminDashboard from "../pages/AdminDashboard";
