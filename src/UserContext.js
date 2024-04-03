@@ -6,9 +6,14 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [flashMessage, setFlashMessage] = useState(null);
   const [user, setUser] = useState(() => {
-    const storedUser = localStorage.getItem("user");
-    return storedUser;
-  }); 
+    try {
+      const storedUser = localStorage.getItem("user");
+      return storedUser ? JSON.parse(storedUser) : null;
+    } catch (error) {
+      console.error("Error parsing user data from localStorage:", error);
+      return null;
+    }
+  });
 
 
   const handleLogin = async (email, password) => {
