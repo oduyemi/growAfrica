@@ -7,8 +7,8 @@ export const UserProvider = ({ children }) => {
   const [flashMessage, setFlashMessage] = useState(null);
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
-    return storedUser ? JSON.parse(storedUser) : null;
-  }); 
+    return storedUser ? JSON.parse(storedUser) : {};
+  });
 
     // LOGIN VALIDATION
     const handleLogin = async (email, password) => {

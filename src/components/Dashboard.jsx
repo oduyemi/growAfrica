@@ -13,44 +13,34 @@ import axios from "axios";
 
 export const Dashboard = () => {
     const { user, handleSignout } = useContext(UserContext);
-    const [userDetails, setUserDetails] = useState({
-        fname: "",
-        lname: "",
-        email: "",
-        phone: ""
-    });
+    const [flashMessage, setFlashMessage] = useState(null);  
     const [contacts, setContacts] = useState([]);
 
     useEffect(() => {
-        if (user) {
-            setUserDetails({
-                fname: user.fname || "",
-                lname: user.lname || "",
-                email: user.email || "",
-                phone: user.phone || "",
-            });
-        } else {
-            console.log("User is null")
-            window.location.href = "/admin/signin"
-        } 
-    }, [user]);
-
-    useEffect(() => {
-        const storedUserDetails = JSON.parse(localStorage.getItem('userDetails'));
-        if (storedUserDetails) {
-            setUserDetails(storedUserDetails);
+        if (!user) {
+          setFlashMessage({
+            type: "error",
+            message: "You need to sign in first!",
+          });
+          localStorage.setItem("requestedPath", "/admin");
+          window.location.href = "/admin/signin";
         }
-    }, []);
+      }, [user]);
+      
 
     useEffect(() => {
         const fetchContacts = async () => {
             try {
                 const response = await axios.get("https://grow-africa-api.vercel.app/contacts");
-                setContacts(response.data.data);
+                if (response.data && response.data.data) {
+                    setContacts(response.data.data);
+                } else {
+                    console.error("Invalid response data:", response.data);
+                }
             } catch (error) {
                 console.error("Error fetching contacts:", error);
             }
-        };
+        }            
 
         fetchContacts();
     }, []);
@@ -91,7 +81,7 @@ export const Dashboard = () => {
                     <Box className="bg-rosepink md:p-2 p-6 rounded-xl border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%]">
                         <Box className="flex justify-center items-center space-x-5 h-full">
                             <Box>
-                                <Typography variant="h5" className="text-pry inline" paragraph>{userDetails.fname} {userDetails.lname} </Typography>&emsp; &emsp;
+                                <Typography variant="h5" className="text-pry inline" paragraph>{user && user.fname} {user && user.lname} </Typography>&emsp; &emsp;
                                 <span className="inline text-right">
                                     <Link to="/admin/update">
                                         <EditIcon
@@ -101,8 +91,8 @@ export const Dashboard = () => {
                                         />
                                     </Link>
                                 </span>
-                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{userDetails.phone}</Typography>
-                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{userDetails.email}</Typography>
+                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{user && user.phone}</Typography>
+                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{user && user.email}</Typography>
                                 
                             </Box>
                         </Box>
