@@ -18,6 +18,7 @@ const PopupForm = ({ open, onClose }) => {
     contactPreference: "",
     how: ""
   });
+  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -94,6 +95,7 @@ const PopupForm = ({ open, onClose }) => {
                       focus:border-green-700
                     "
                     placeholder="e.g Solomon Edem"
+                    required
                   />
                 </Box>
                 <Box className="mb-2">
@@ -109,6 +111,7 @@ const PopupForm = ({ open, onClose }) => {
                     placeholder="e.g youremail@gmail.com"
                     onChange={handleChange}
                     value={formData.email}
+                    required
                   />
                 </Box>
                 <Box className="mb-2">
@@ -122,6 +125,9 @@ const PopupForm = ({ open, onClose }) => {
                       focus:border-green-700
                     "
                     placeholder="e.g +2347066338756"
+                    onChange={handleChange}
+                    value={formData.phone}
+                    required
                   />
                 </Box>
                 <Box className="mb-2">
@@ -137,6 +143,7 @@ const PopupForm = ({ open, onClose }) => {
                     placeholder="What is Your Interest About The Product?"
                     onChange={handleChange}
                     value={formData.productInterest}
+                    required
                   />
                 </Box>
                 <Box className="mb-2">
@@ -150,6 +157,7 @@ const PopupForm = ({ open, onClose }) => {
                     "
                     onChange={handleChange}
                     value={formData.shopperOrVendor}
+                    required
                   >
                     <option value="">Choose an option</option>
                     <option value="shopper">Shopper</option>
@@ -167,6 +175,7 @@ const PopupForm = ({ open, onClose }) => {
                     "
                     onChange={handleChange}
                     value={formData.contactPreference}
+                    required
                   >
                     <option value="">Select Your Preferred Communication Method</option>
                     <option value="email">Email</option>
@@ -186,6 +195,7 @@ const PopupForm = ({ open, onClose }) => {
                     "
                     onChange={handleChange}
                     value={formData.how}
+                    required
                   >
                     <option value="">How Did You Hear About Us?</option>
                     <option value="whatsapp">WhatsApp</option>
