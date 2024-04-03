@@ -45,7 +45,7 @@ export const Dashboard = () => {
     useEffect(() => {
         const fetchContacts = async () => {
             try {
-                const response = await axios.get("/contacts");
+                const response = await axios.get("https://grow-africa-api.vercel.app/contacts");
                 setContacts(response.data.data);
             } catch (error) {
                 console.error("Error fetching contacts:", error);
