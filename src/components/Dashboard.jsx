@@ -31,7 +31,7 @@ export const Dashboard = () => {
             });
         } else {
             console.log("User is null")
-            window.location.href = "/admin/signin"
+            window.location.href = "/admin"
         } 
     }, [user]);
 
