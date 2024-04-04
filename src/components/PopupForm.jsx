@@ -38,7 +38,7 @@ const PopupForm = ({ open, onClose }) => {
   return (
     <Modal isOpen={open} onRequestClose={onClose} className="Modal">
       <Box className="grid items-center justify-center bg-white bg-opacity-75">
-        <Box className="formbox bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full py-8 md:py-10 mb-10 mt-3">
+        <Box className="formbox bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full py-6 md:py-8 mb-10 mt-4">
             <button
                 onClick={onClose}
                 className="absolute top-2 right-2 text-red-500 hover:text-red-700"
