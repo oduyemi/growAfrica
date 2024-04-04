@@ -22,7 +22,13 @@ export const UserProvider = ({ children }) => {
   
         if (response.status === 200) {
           console.log("Success:", response.data);
-          setUser(response.data);
+          setUser({
+            adminID: response.data.adminID,
+            fname: response.data.fname,
+            lname: response.data.lname,
+            email: response.data.email,
+            phone: response.data.phone
+          });
           localStorage.setItem("user", JSON.stringify(response.data));
           setFlashMessage({
             type: "success",
