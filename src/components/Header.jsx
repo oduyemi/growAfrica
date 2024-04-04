@@ -46,7 +46,7 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
                 <Box className="cta">
                   <Typography variant="h6" sx={{ fontWeight: "200", fontSize: "16px" }} paragraph className="inline text-pry font-light text-l">
                     {user.fname} &nbsp; {user.lname}
-                  </Typography> &emsp;
+                  </Typography> &emsp; &emsp;
                   <span>
                     <PowerSettingsNewIcon
                       onClick={handleSignout}
