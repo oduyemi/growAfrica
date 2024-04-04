@@ -19,7 +19,7 @@ const Home = () => {
            <Banner />
            <WhoWeAre />
            <BoxImages />
-           {/* <Join /> */}
+           <Join />
            <Box className="p-10 bg-[#01562A] my-10 flex justify-center items-center">
                 <Box>
                 <CountDown />

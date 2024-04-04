@@ -8,7 +8,7 @@ export const WhoWeAre = () => {
     return(
         <Box maxWidth="l" className="who flex items-center justify-center md:mx-auto mt-14 space-x-8" >
             <Box maxWidth="sm" className="grid md:w-5/6 md:text-center md:pl-6">
-                <div class="md:max-w-7xl md:mx-auto">
+                <div className="md:max-w-7xl md:mx-auto">
                     <div className="relative group cursor-pointer">
                         <div
                             className="hide absolute 
@@ -26,7 +26,7 @@ export const WhoWeAre = () => {
                         leading-none grid 
                         items-top justify-start 
                         space-x-6">
-                            <div class="space-y-2">
+                            <div className="space-y-2">
                                 <Typography 
                                     variant="h5" 
                                     className="text-slate-800 pt-[10%]"
