@@ -57,11 +57,10 @@ export const WhoWeAre = () => {
                     className="und mx-auto md:text-xl md:w-3/4"
                     sx={{ fontWeight: "300" }}
                 >
-                    We understand the importance of a seamless and secure
-                    shopping experience. GrowAfrica is designed with
-                    user-friendly interfaces, secure transactions, and
-                    efficient customer support to ensure that your journey
-                    with us is as delightful as the products we offer.
+                    We are an all African products Ecommerce platform.
+                    Our products are curated from the best African
+                    products and we are here to grow the Africa
+                    economy as a whole. 
                 </Typography>
             </Box>
         </Box>
