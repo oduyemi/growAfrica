@@ -28,7 +28,7 @@ const PopupForm = ({ open, onClose }) => {
     e.preventDefault();
     try {
       const response = await axios.post("https://grow-africa-api.vercel.app/send/contact", formData);
-      setFeedback("Form submitted successfully! We will reach out to you soon."); 
+      setFeedback("Thank you for joining our waitlist! We will keep in touch with you."); 
       setTimeout(() => {
         onClose();
     }, 2000);
