@@ -31,10 +31,13 @@ const PopupForm = ({ open, onClose }) => {
       setFeedback("Thank you for joining our waitlist! We will keep in touch with you."); 
       setTimeout(() => {
         onClose();
-    }, 2000);
+    }, 5000);
     } catch (error) {
       console.error("Error submitting form:", error);
       setFeedback("An error occurred while submitting the form. Please try again later.");
+      setTimeout(() => {
+        onClose();
+    }, 3000);
     }
   };
 
