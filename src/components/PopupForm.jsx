@@ -187,7 +187,7 @@ const PopupForm = ({ open, onClose }) => {
                     <option value="">Select Your Preferred Communication Method</option>
                     <option value="email">Email</option>
                     <option value="instagram">Instagram</option>
-                    <option value="phonecall">Phone call</option>
+                    <option value="phone">Phone call</option>
                     <option value="whatsapp">WhatsApp</option>
                   </select>
                 </Box>
