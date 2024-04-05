@@ -31,7 +31,7 @@ const PopupForm = ({ open, onClose }) => {
       setFeedback("Form submitted successfully! We will reach out to you soon."); 
       setTimeout(() => {
         onClose();
-    }, 1000);
+    }, 2000);
     } catch (error) {
       console.error("Error submitting form:", error);
       setFeedback("An error occurred while submitting the form. Please try again later.");
