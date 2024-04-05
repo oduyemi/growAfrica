@@ -131,22 +131,6 @@ const PopupForm = ({ open, onClose }) => {
                   />
                 </Box>
                 <Box className="mb-1">
-                  <label htmlFor="productInterest" className="text-xs font-semibold px-1">Product Interest</label>
-                  <input
-                    type="text"
-                    name="productInterest"
-                    className="
-                      w-full px-3 py-1 rounded-xl
-                      border-2 border-gray-200 outline-none
-                      focus:border-green-700
-                    "
-                    placeholder="What is Your Interest About The Product?"
-                    onChange={handleChange}
-                    value={formData.productInterest}
-                    required
-                  />
-                </Box>
-                <Box className="mb-1">
                   <label htmlFor="shopperOrVendor" className="text-xs font-semibold px-1">Shopper or Vendor</label>
                   <select
                     name="shopperOrVendor"
@@ -164,6 +148,23 @@ const PopupForm = ({ open, onClose }) => {
                     <option value="vendor">Vendor</option>
                   </select>
                 </Box>
+                <Box className="mb-1">
+                  <label htmlFor="productInterest" className="text-xs font-semibold px-1">Product Interest</label>
+                  <input
+                    type="text"
+                    name="productInterest"
+                    className="
+                      w-full px-3 py-1 rounded-xl
+                      border-2 border-gray-200 outline-none
+                      focus:border-green-700
+                    "
+                    placeholder="What would you like to buy/sell on the platform?"
+                    onChange={handleChange}
+                    value={formData.productInterest}
+                    required
+                  />
+                </Box>
+                
                 <Box className="mb-1">
                   <label htmlFor="contactPreference" className="text-xs font-semibold px-1">Preferred Communication Method</label>
                   <select
