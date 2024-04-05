@@ -18,7 +18,7 @@ const PopupForm = ({ open, onClose }) => {
     contactPreference: "",
     how: ""
   });
-  
+  const [feedback, setFeedback] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,10 +28,11 @@ const PopupForm = ({ open, onClose }) => {
     e.preventDefault();
     try {
       const response = await axios.post("https://grow-africa-api.vercel.app/send/contact", formData);
-      console.log(response.data.message); 
+      setFeedback("Form submitted successfully! We will reach out to you soon.");
       onClose(); 
     } catch (error) {
       console.error("Error submitting form:", error);
+      setFeedback("An error occurred while submitting the form. Please try again later.");
     }
   };
 
