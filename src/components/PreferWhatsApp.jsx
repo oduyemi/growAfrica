@@ -114,11 +114,6 @@ export const PreferWhatsApp = () => {
 
                             <Box
                                 className="flex-1 bg-gradient-to-r from-rosepink to-pry rounded-xl flex flex-col items-center justify-center p-4 space-y-2 border border-gray-200 m-2">
-                                <Link to="/admin/preference-instagram" className="text-lightcream hover:text-red-600">Instagram</Link>
-                            </Box>
-
-                            <Box
-                                className="flex-1 bg-gradient-to-r from-rosepink to-pry rounded-xl flex flex-col items-center justify-center p-4 space-y-2 border border-gray-200 m-2">
                                 <Link to="/admin/preference-phone-call" className="text-lightcream hover:text-red-600">Phone Call</Link>
                             </Box>
 
