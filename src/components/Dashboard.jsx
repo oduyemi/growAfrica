@@ -15,6 +15,7 @@ export const Dashboard = () => {
     const { user, handleSignout } = useContext(UserContext);
     const [flashMessage, setFlashMessage] = useState(null)
     const [userDetails, setUserDetails] = useState({
+        adminID: "",
         fname: "",
         lname: "",
         email: "",
@@ -31,6 +32,7 @@ export const Dashboard = () => {
         window.location.href="/admin/signin";
     } else {
         setUserDetails({
+            adminID: user.adminID,
             fname: user.fname,
             lname: user.lname,
             email: user.email,
