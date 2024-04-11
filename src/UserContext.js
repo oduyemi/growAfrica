@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     try {
       const storedUser = localStorage.getItem("user");
-      return storedUser !== null ? JSON.parse(storedUser) : null;
+      return storedUser ? JSON.parse(storedUser) : null;
     } catch (error) {
       console.error("Error parsing user data from localStorage:", error);
       return null;
@@ -19,32 +19,35 @@ export const UserProvider = ({ children }) => {
     const handleLogin = async (email, password) => {
       try {
         const response = await axios.post("https://grow-africa-api.vercel.app/send/admin/signin", { email, password });
-  
-        if (response.status === 200) {
+        if (response.status === 200 && response.data.status === "success") {
           console.log("Success:", response.data);
+          const { adminID, fname, lname, email, phone, token } = response.data;
+          localStorage.setItem("user", JSON.stringify({ adminID, fname, lname, email, phone }));
+          localStorage.setItem("token", token);
           setUser({
-            adminID: response.data.adminID,
-            fname: response.data.fname,
-            lname: response.data.lname,
-            email: response.data.email,
-            phone: response.data.phone
+            adminID,
+            fname,
+            lname, 
+            email,
+            phone
           });
-          localStorage.setItem("user", JSON.stringify(response.data));
           setFlashMessage({
             type: "success",
             message: "Login Successful. Welcome Back!",
           });
-  
           setTimeout(() => {
             window.location.href = "/admin";
           }, 1000);
+
         } else if (response.status === 400) {
           console.log("Error:", response.data);
           setFlashMessage({ type: "error", message: "All fields are required!" });
+
         } else {
           console.error("Error:", response.data);
           setFlashMessage({ type: "error", message: "An unexpected error occurred. Please try again later." });
         }
+
       } catch (error) {
         console.error("Axios Error:", error);
   
