@@ -52,6 +52,16 @@ export const PreferWhatsApp = () => {
         fetchWhatsappPreferences();
     }, []);
 
+    const exportData = () => {
+        const csvContent = "data:text/csv;charset=utf-8,"
+            + whatsappPreferences.map(preference => Object.values(preference).join(",")).join("\n");
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "whatsappPreference.csv");
+        document.body.appendChild(link);
+        link.click();
+    };
     return(
         <>
             <Box id="sideNav" className="lg:block hidden bg-carton w-full lg:w-64 h-screen fixed rounded-none border-none">
@@ -127,7 +137,12 @@ export const PreferWhatsApp = () => {
 
                 <Box className="bg-white rounded-xl p-4 shadow-md overflow-x-auto">
                     <Box className="px-4 py-2 text-left border-b-2 w-full">
-                        <Typography variant="h5" className="font-bold text-yellow-600">Contact Preference: WhatsApp</Typography>
+                        <Typography variant="h5" className="font-bold text-yellow-600 inline">Preference: WhatsApp</Typography> &emsp; &emsp;
+                        <span>
+                            <Button onClick={exportData} className="mb-4 bg-btn inline">
+                                Export Data
+                            </Button>
+                        </span>
                     </Box>
                     <table className="table-auto w-full">
                         <thead>

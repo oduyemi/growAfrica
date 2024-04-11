@@ -55,6 +55,16 @@ export const VendorsList = () => {
         }
     };
 
+    const exportData = () => {
+        const csvContent = "data:text/csv;charset=utf-8,"
+            + vendorsData.map(vendor => Object.values(vendor).join(",")).join("\n");
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "vendorList.csv");
+        document.body.appendChild(link);
+        link.click();
+    };
     return(
         <>
             <Box id="sideNav" className="lg:block hidden bg-carton w-full lg:w-64 h-screen fixed rounded-none border-none">
@@ -130,7 +140,12 @@ export const VendorsList = () => {
 
                 <Box className="bg-white rounded-xl p-4 shadow-md overflow-x-auto">
                     <Box className="px-4 py-2 text-left border-b-2 w-full">
-                        <Typography variant="h5" className="font-bold text-yellow-600">Vendors</Typography>
+                        <Typography variant="h5" className="font-bold text-yellow-600 inline">Vendors</Typography> &emsp; &emsp;
+                        <span>
+                            <Button onClick={exportData} className="mb-4 bg-btn inline">
+                                Export Data
+                            </Button>
+                        </span>
                     </Box>
                     <table className="table-auto w-full">
                         <thead>

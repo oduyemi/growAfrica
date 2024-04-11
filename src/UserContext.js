@@ -15,33 +15,25 @@ export const UserProvider = ({ children }) => {
     }
   });
 
-  // LOGIN VALIDATION
   const handleLogin = async (email, password) => {
     try {
       const response = await axios.post("https://grow-africa-api.vercel.app/send/admin/signin", { email, password });
-  
-      if (response.status === 200 && response.data.status === "success") {
+      
+      if (response.status === 200 && response.data.message === "success") {
         console.log("Success:", response.data);
-        const { adminID, fname, lname, email, phone, token } = response.data;
-  
+        const { fname, lname, email, phone, token } = response.data;
+
         // Store user data and token in localStorage
-        localStorage.setItem("user", JSON.stringify({ adminID, fname, lname, email, phone }));
+        localStorage.setItem("user", JSON.stringify({ fname, lname, email, phone }));
         localStorage.setItem("token", token);
-  
-        // Set user data in context
-        setUser({ 
-          adminID: response.data.adminID,
-          fname: response.data.fname,
-          lname: response.data.lname,
-          email: response.data.email,
-          phone: response.data.phone
-        });
-  
+
+        setUser({ fname, lname, email, phone });
+
         setFlashMessage({
           type: "success",
           message: "Login Successful. Welcome Back!",
         });
-  
+
         setTimeout(() => {
           window.location.href = "/admin";
         }, 1000);
@@ -57,10 +49,8 @@ export const UserProvider = ({ children }) => {
       setFlashMessage({ type: "error", message: "Login failed. Please try again later." });
     }
   };
-  
 
-  // LOGOUT 
-  const handleLogout = () => {
+  const handleSignout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     setUser(null);
@@ -68,7 +58,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, flashMessage, handleLogin, handleLogout }}>
+    <UserContext.Provider value={{ user, setUser, flashMessage, handleLogin, handleSignout }}>
       {children}
     </UserContext.Provider>
   );
