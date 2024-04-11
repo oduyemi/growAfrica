@@ -48,9 +48,9 @@ export const EditProfile = () => {
 
     const updateUserData = async () => {
         try {
-            const response = await axios.put(`https://grow-africa-api.vercel.app/admin/${userDetails.id}`, {
-                first_name: userDetails.fname,
-                last_name: userDetails.lname,
+            const response = await axios.put(`https://grow-africa-api.vercel.app/admin/${userDetails.adminID}`, {
+                fname: userDetails.fname,
+                lname: userDetails.lname,
                 email: userDetails.email,
                 phone: userDetails.phone,
             });
@@ -133,7 +133,7 @@ export const EditProfile = () => {
                     <Box className="bg-rosepink md:p-2 p-6 rounded-xl border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%]">
                         <Box className="flex justify-center items-center space-x-5 h-full">
                         <Box>
-                                <Typography variant="h5" className="text-pry inline" paragraph>{userDetails.fname} || Joe {userDetails.lname} || Doe </Typography>&emsp; &emsp;
+                                <Typography variant="h5" className="text-pry inline" paragraph>{userDetails.fname || user.fname} {userDetails.lname || user.lname}</Typography>&emsp; &emsp;
                                 <span className="inline text-right">
                                     <Link to="/admin/update">
                                         <EditIcon
