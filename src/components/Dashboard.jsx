@@ -36,7 +36,7 @@ export const Dashboard = () => {
             fname: user.fname || "",
             lname: user.lname || "",
             email: user.email || "",
-            phone: user.phone || ""
+            phone: user.phone || "",
         });
         }
     }, [user]);
@@ -125,8 +125,8 @@ export const Dashboard = () => {
                                         />
                                     </Link>
                                 </span>
-                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{userDetails.phone || user.phone}</Typography>
-                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{userDetails.email ||user.email}</Typography>
+                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{userDetails.phone}</Typography>
+                                <Typography variant="h6" paragraph sx={{fontWeight: "300", fontSize:"14px"}}>{userDetails.email}</Typography>
                                 
                             </Box>
                         </Box>
