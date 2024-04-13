@@ -232,11 +232,11 @@ export const EditProfile = () => {
                             <Button className="mx-auto" onClick={updateUserData}>
                                 Save Changes
                             </Button> &emsp;
-                            <Link to="/admin/reset-password">
+                            {/* <Link to="/admin/reset-password">
                                 <Button className="mx-auto">
                                     Change Password Here
                                 </Button>
-                            </Link>
+                            </Link> */}
                         </div>
                     </div>
                 </div>

@@ -30,7 +30,10 @@ export const Banner = () => {
                     <Typography 
                         variant="h3" 
                         className="text-pry inline"
-                        sx={{ fontWeight:"500"}}
+                        sx={{ 
+                            fontWeight:"500",
+                            color: "#01562A"
+                        }}
                     >
                         Africa&apos;s {" "}
                     </Typography>
