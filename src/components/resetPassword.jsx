@@ -31,7 +31,7 @@ export const ResetPasswordForm = () => {
     
             const response = await axios.put(`https://grow-africa-api.vercel.app/admin/resetpassword/${user.adminID}`, formData, {
                 headers: { "Content-Type": "application/json" }
-            });
+            });            
     
             console.log(response.data);
     
