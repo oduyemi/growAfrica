@@ -46,7 +46,7 @@ export const Header = () => {
                       {userDetails ? ( 
                           <Box className="cta">
                               <Typography variant="h6" sx={{ fontWeight: "300", fontSize: "16px" }} paragraph className="inline font-light text-l">
-                                  {userDetails.fname || user.fname} &nbsp; {userDetails.lname || user.lname}
+                                  {userDetails.fname} &nbsp; {userDetails.lname}
                               </Typography> &emsp; &emsp;
                               <span>
                                   <PowerSettingsNewIcon
