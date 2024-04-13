@@ -44,7 +44,7 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
             <Box className="mt-[-2.6%] flex items-center justify-between space-x-4 pr-10 reg">
               {user ? (
                 <Box className="cta">
-                  <Typography variant="h6" sx={{ fontWeight: "200", fontSize: "16px" }} paragraph className="inline font-light text-l">
+                  <Typography variant="h6" sx={{ fontWeight: "300", fontSize: "16px" }} paragraph className="inline font-light text-l">
                     {user.fname} &nbsp; {user.lname}
                   </Typography> &emsp; &emsp;
                   <span>
