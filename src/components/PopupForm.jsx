@@ -89,7 +89,8 @@ const PopupForm = ({ open, onClose }) => {
             <form onSubmit={handleSubmit}>
               <Box maxWidth="400px">
                 {feedback && ( 
-                <Box className={`text-center text-white py-2 mb-4 ${feedback.includes("success") ? "bg-green-500" : "bg-red-500"}`}>
+                <Box className={`text-center text-white py-2 mb-4 ${feedback.includes("success") ? "bg-green-500" : "bg-red-500"
+              }`}>
                   <Typography variant="body1">{feedback}</Typography>
                 </Box>
                 )}

@@ -24,7 +24,7 @@ export const ResetPasswordForm = () => {
                 throw new Error("Both Passwords must match!");
             }
     
-            const response = await axios.post("https://grow-africa-api-wine.vercel.app/admin/reset-password", formData, {
+            const response = await axios.put(`/admin/${adminId}/resetpassword`, formData, {
                 headers: { "Content-Type": "application/json" }
             });
     
@@ -32,14 +32,18 @@ export const ResetPasswordForm = () => {
     
             setFlashMessage({
                 type: "success",
-                message: "Admin registered successfully. Redirecting to Login.",
+                message: "Password reset successfully.",
             });
     
-            setFormSubmitted(true);
+            setFormData({
+                oldpwd: "",
+                pwd: "",
+                cpwd: ""
+            });
     
             setTimeout(() => {
-                window.location.href = "/admin/signin"
-            }, 2000);
+                setFlashMessage(null);
+            }, 5000);
     
         } catch (error) {
             console.error("Error:", error);
@@ -55,8 +59,7 @@ export const ResetPasswordForm = () => {
     
             setFlashMessage({ type: "error", message: errorMessage });
         }
-
-    }
+    }    
 
     const toggleShowOldPassword = () => {
         setShowOldPassword(!showOldPassword)
