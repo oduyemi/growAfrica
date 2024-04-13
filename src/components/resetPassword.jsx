@@ -1,16 +1,20 @@
-import React, { useState } from "react";
-import Button from "../elements/Button";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../UserContext";import Button from "../elements/Button";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Box } from "@mui/material";
 import axios from 'axios'
 
 export const ResetPasswordForm = () => {
+    const { user } = useContext(UserContext);
     const [showOldPassword, setShowOldPassword] = useState(false);
     const [showPwd, setShowPwd] = useState(false);
     const [showCpwd, setShowCpwd] = useState(false);
     const [flashMessage, setFlashMessage] = useState(null);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [userDetails, setUserDetails] = useState({
+        adminID: "",
+    });
     const [formData, setFormData] = useState({
         oldpwd: "",
         pwd: "",
@@ -24,7 +28,7 @@ export const ResetPasswordForm = () => {
                 throw new Error("Both Passwords must match!");
             }
     
-            const response = await axios.put(`/admin/${adminId}/resetpassword`, formData, {
+            const response = await axios.put(`https://grow-africa-api.vercel.app/admin/${user.adminID}/resetpassword`, formData, {
                 headers: { "Content-Type": "application/json" }
             });
     
