@@ -27,19 +27,26 @@ const PopupForm = ({ open, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://grow-africa-api.vercel.app/send/contact", formData);
-      setFeedback("Success. Thank you for joining our waitlist! We will keep in touch with you."); 
-      setTimeout(() => {
-        onClose();
-    }, 5000);
+        const response = await axios.post("https://grow-africa-api.vercel.app/send/contact", formData);
+        if (response.status === 200) {
+            setFeedback("Success. Thank you for joining our waitlist! We will keep in touch with you.");
+            setTimeout(() => {
+                onClose();
+            }, 5000);
+        } else {
+            setFeedback("An error occurred while submitting the form. Please try again later.");
+            setTimeout(() => {
+                onClose();
+            }, 3000);
+        }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      setFeedback("An error occurred while submitting the form. Please try again later.");
-      setTimeout(() => {
-        onClose();
-    }, 3000);
+        console.error("Error submitting form:", error);
+        setFeedback("An error occurred while submitting the form. Please try again later.");
+        setTimeout(() => {
+            onClose();
+        }, 3000);
     }
-  };
+};
 
   return (
     <Modal isOpen={open} onRequestClose={onClose} className="Modal">
