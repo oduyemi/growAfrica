@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-import { UserContext } from "../UserContext";import Button from "../elements/Button";
+import { UserContext } from "../UserContext";
+import Button from "../elements/Button";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Box } from "@mui/material";
@@ -16,19 +17,19 @@ export const ResetPasswordForm = () => {
         adminID: "",
     });
     const [formData, setFormData] = useState({
-        oldpwd: "",
-        pwd: "",
-        cpwd: ""
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: ""
     });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            if (formData.pwd !== formData.cpwd) {
+            if (formData.newPassword !== formData.confirmPassword) {
                 throw new Error("Both Passwords must match!");
             }
     
-            const response = await axios.put(`https://grow-africa-api.vercel.app/admin/${user.adminID}/resetpassword`, formData, {
+            const response = await axios.put(`https://grow-africa-api.vercel.app/admin/resetpassword/${user.adminID}`, formData, {
                 headers: { "Content-Type": "application/json" }
             });
     
@@ -40,9 +41,9 @@ export const ResetPasswordForm = () => {
             });
     
             setFormData({
-                oldpwd: "",
-                pwd: "",
-                cpwd: ""
+                oldPassword: "",
+                newPassword: "",
+                confirmPassword: ""
             });
     
             setTimeout(() => {
@@ -86,13 +87,13 @@ export const ResetPasswordForm = () => {
                 )}
             <form className="max-w-sm mx-auto w-full" onSubmit={handleSubmit}>
                 <Box className="flex flex-col pt-10">
-                <label htmlFor="oldpwd" className="text-gray-700">Old Password</label>
+                <label htmlFor="oldPassword" className="text-gray-700">Old Password</label>
                     <Box className="relative">
                     <input 
                         type={showOldPassword ? "text" : "password"} 
-                        name="oldpwd" className="rounded-md border border-black  pr-32" 
-                        onChange={e => setFormData({...formData, oldpwd: e.target.value})} 
-                        value={formData.oldpwd} 
+                        name="oldPassword" className="rounded-md border border-black  pr-32" 
+                        onChange={e => setFormData({...formData, oldPassword: e.target.value})} 
+                        value={formData.oldPassword} 
                     />
                         <button 
                             type="button" 
@@ -103,13 +104,13 @@ export const ResetPasswordForm = () => {
                         </button>
                     </Box>
                     
-                    <label htmlFor="pwd" className="text-gray-700">Password</label>
+                    <label htmlFor="newPassword" className="text-gray-700">Password</label>
                     <Box className="relative">
                     <input 
                         type={showPwd ? "text" : "password"} 
-                        name="pwd" className="rounded-md border border-black  pr-32" 
-                        onChange={e => setFormData({...formData, pwd: e.target.value})} 
-                        value={formData.pwd} 
+                        name="newPassword" className="rounded-md border border-black  pr-32" 
+                        onChange={e => setFormData({...formData, newPassword: e.target.value})} 
+                        value={formData.newPassword} 
                     />
                         <button 
                             type="button" 
@@ -119,13 +120,13 @@ export const ResetPasswordForm = () => {
                             <VisibilityIcon /> : <VisibilityOffIcon />} 
                         </button>
                     </Box>
-                    <label htmlFor="cpwd" className="text-gray-700">Confirm Password</label>
+                    <label htmlFor="confirmPassword" className="text-gray-700">Confirm Password</label>
                     <Box className="relative">
                     <input 
                         type={showCpwd ? "text" : "password"} 
-                        name="cpwd" className="rounded-md border border-black pr-32" 
-                        onChange={e => setFormData({...formData, cpwd: e.target.value})} 
-                        value={formData.cpwd} 
+                        name="confirmPassword" className="rounded-md border border-black pr-32" 
+                        onChange={e => setFormData({...formData, confirmPassword: e.target.value})} 
+                        value={formData.confirmPassword} 
                     />
                         <button 
                             type="button" 
