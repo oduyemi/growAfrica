@@ -27,26 +27,19 @@ const PopupForm = ({ open, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post("https://grow-africa-api.vercel.app/send/contact", formData);
-        if (response.status === 200) {
-            setFeedback("Success. Thank you for joining our waitlist! We will keep in touch with you.");
-            setTimeout(() => {
-                onClose();
-            }, 5000);
-        } else {
-            setFeedback("An error occurred while submitting the form. Please try again later.");
-            setTimeout(() => {
-                onClose();
-            }, 3000);
-        }
+      const response = await axios.post("https://grow-africa-api.vercel.app/send/contact", formData);
+      setFeedback("Success. Thank you for joining our waitlist! We will keep in touch with you."); 
+      setTimeout(() => {
+        onClose();
+    }, 5000);
     } catch (error) {
-        console.error("Error submitting form:", error);
-        setFeedback("An error occurred while submitting the form. Please try again later.");
-        setTimeout(() => {
-            onClose();
-        }, 3000);
+      console.error("Error submitting form:", error);
+      setFeedback("An error occurred while submitting the form. Please try again later.");
+      setTimeout(() => {
+        onClose();
+    }, 3000);
     }
-};
+  };
 
   return (
     <Modal isOpen={open} onRequestClose={onClose} className="Modal">
@@ -96,7 +89,7 @@ const PopupForm = ({ open, onClose }) => {
             <form onSubmit={handleSubmit}>
               <Box maxWidth="400px">
                 {feedback && ( 
-                <Box className={`text-center text-white py-2 mb-4 ${feedback.includes("success") ? "bg-green-500" : "bg-red-500"
+                <Box className={`text-center text-white py-2 mb-4 ${feedback.includes("Success") ? "bg-green-500" : "bg-red-500"
               }`}>
                   <Typography variant="body1">{feedback}</Typography>
                 </Box>
