@@ -4,7 +4,7 @@ import { UserProvider } from "../UserContext";
 import { Routes, Route } from "react-router-dom";
 import { Header } from "../components/Header";
 import Home from "../pages/Home";
-// import AdminSignup from "../pages/AdminSignup";
+import AdminSignup from "../pages/AdminSignup";
 import AdminSignin from "../pages/AdminSignin";
 import AdminDashboard from "../pages/AdminDashboard";
 import EmailList from "../pages/EmailList";
@@ -27,7 +27,7 @@ export const Navigation = () => {
             <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    {/* <Route path="/admin/signup" element={<AdminSignup />} /> */}
+                    <Route path="/admin/signup" element={<AdminSignup />} />
                     <Route path="/admin/signin" element={<AdminSignin />} />
                     <Route path="/admin/reset-password" element={<PasswordReset />} />
                     <Route path="/admin" element={<AdminDashboard />} />
