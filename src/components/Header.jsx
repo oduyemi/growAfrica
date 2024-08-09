@@ -1,10 +1,28 @@
-import React from "react";
-import { Box } from "@mui/material";
-import defaultAvatar from "../assets/images/avatar.png";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import React, { useState, useContext } from "react";
+import { UserContext } from "../UserContext";
+import { Box, Typography } from "@mui/material";
+import Button from "../elements/Button";
 import { Link } from "react-router-dom";
+import { CountDown } from "./CountDown";
+import Modal from "react-modal";
+import { PopupForm } from "./PopupForm";
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+
+
 
 export const Header = () => {
+  const { user, handleSignout } = useContext(UserContext);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const userDetails = JSON.parse(localStorage.getItem("userDetails")); 
+
+  const handlePopupOpen = () => {
+      setPopupOpen(true);
+  };
+
+  const handlePopupClose = () => {
+      setPopupOpen(false);
+  };
+
   return (
       <header className={`bg-transparent`}>
           <nav id="header" className="bg-transparent">
@@ -28,7 +46,7 @@ export const Header = () => {
                       {userDetails ? ( 
                           <Box className="cta">
                               <Typography variant="h6" sx={{ fontWeight: "300", fontSize: "16px" }} paragraph className="inline font-light text-l">
-                                  {userDetails.fname || user.fname} &nbsp; {userDetails.lname || user.lname}
+                                  {userDetails.fname} &nbsp; {userDetails.lname}
                               </Typography> &emsp; &emsp;
                               <span>
                                   <PowerSettingsNewIcon

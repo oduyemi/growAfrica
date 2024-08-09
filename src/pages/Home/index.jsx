@@ -7,7 +7,6 @@ import { PreFooter } from "../../components/PreFooter";
 import { WhoWeAre } from "../../components/WhoWeAre";
 
 
-
 const Home = () => {
     
     return(
