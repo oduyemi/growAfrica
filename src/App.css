@@ -1,23 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 *{
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
 }
+
 
 body{
-  background-color: #F3EAF4;
   overflow-x: hidden;
-  scroll-behavior: smooth; 
-}
-
-.html{
+  color: #1A1A1A;
+  background-color: #FEFEFE;
   scroll-behavior: smooth;
 }
 
-#root{
-  height:100%;
+.App {
+  height: auto;
 }
 
-.App{
-  height: auto; 
+#root{
+  height: 100%;
+}
+
+
+.banner{
+  margin-top: 5% !important;
+}
+
+.side{
+  position: relative;
+  right: 1%;
+  top:10% !important;
+}
+
+
+
+.rewarding{
+  margin-top: 10% !important;
+  position: relative;
+  left: 10%
+}
+
+.who, .join{
+  margin-top: 5% !important;
+}
+.up{
+  margin-top: -20% !important;
+}
+
+@media (max-width: 768px) {  
+  .headerbtn{
+    position: relative !important;
+    left: 30px !important;
+  }
+
+  .logo {
+    width: 36%;
+    position: relative;
+    right: 7%;
+  }
+
+  .headerlogo{
+    width: 70% !important;
+    position: relative;
+    left: 30px;
+    top: 14px
+  }
+
+  .gap{
+    margin-left: 10% !important;
+  }
+  .banner{
+    margin: 12px ;
+  }
+  .banner p, .join p{
+    font-size: 18px !important;
+    margin: 10px !important;
+  }
+
+  .banner h3{
+    font-size: 30px !important;
+  }
+
+  .side{
+    font-weight: 300 !important;
+    margin-top: 10px !important;
+    position: relative;
+    right: 34%
+  }
+  .rewarding {
+    margin-top: 10% !important;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: 400 !important;
+    font-size: 28px !important;
+    position: relative;
+    left: 0;
+  }
+
+  .who{
+    flex-wrap: wrap;
+  }
+  .join h3{
+    font-weight: 400 !important;
+  }
+  .boximg{
+    margin: 12px;
+  }
+
+  .space{
+    margin: 10px !important;
+  }
+
+  .abtbox{
+    margin-top: 10% !important;
+    position: relative !important;
+    left: -36% !important;
+  }
+
+  .formbox{
+    margin: 10px;
+  }
+  
+  .hide{
+    display: none;
+  }
+  .footerlogo{
+    position: relative !important;
+    left: 2% !important;
+  }
+  .und{
+    margin: 10px !important;
+    font-size: 18px !important;
+    position: relative;
+    right: 5%
+  }
+  .copy{
+    font-weight: 300 !important;
+    font-size: small !important;
+  }
+  .table-auto {
+    width: 100%;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .table-auto thead {
+    display: none;
+  }
+
+  .table-auto tbody {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .table-auto tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .table-auto th,
+  .table-auto td {
+    display: block;
+    text-align: left;
+  }
+
+  .table-auto td {
+    padding: 8px;
+  }
 }

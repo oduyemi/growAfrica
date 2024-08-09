@@ -33,7 +33,7 @@ export const Header = () => {
                               src={require("../assets/images/logo/logo.png")}
                               alt="logo"
                               width="80%"
-                              className="md:pl-10 w-30 w-30 headerlogo"
+                              className="md:pl-10 w-30 h-30 headerlogo"
                           />
                       </Link>
                   </Box>
