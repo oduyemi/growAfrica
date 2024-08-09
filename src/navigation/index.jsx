@@ -3,19 +3,19 @@ import React from "react";
 import { UserProvider } from "../UserContext";
 import { Routes, Route } from "react-router-dom";
 import { Header } from "../components/Header";
-import Home from "../pages/Home";
-import AdminSignup from "../pages/AdminSignup";
-import AdminSignin from "../pages/AdminSignin";
-import AdminDashboard from "../pages/AdminDashboard";
-import EmailList from "../pages/EmailList";
-import PhoneNmberList from "../pages/PhoneNumberList";
-import Shoppers from "../pages/Shoppers";
-import Vendors from "../pages/Vendors";
-import Mail from "../pages/Mail";
-import Call from "../pages/Call";
-import WhatsApp from "../pages/WhatsApp";
-import EditAdminProfile from "../pages/EditAdminProfile";
-import PasswordReset from "../pages/PasswordReset";
+import Home from "../pages/Home/index";
+import AdminSignup from "../pages/AdminSignup/index";
+import AdminSignin from "../pages/AdminSignin/index";
+import AdminDashboard from "../pages/AdminDashboard/index";
+import EmailList from "../pages/EmailList/index";
+import PhoneNmberList from "../pages/PhoneNumberList/index";
+import Shoppers from "../pages/Shoppers/index";
+import Vendors from "../pages/Vendors/index";
+import Mail from "../pages/Mail/index";
+import Call from "../pages/Call/index";
+import WhatsApp from "../pages/WhatsApp/index";
+import EditAdminProfile from "../pages/EditAdminProfile/index";
+import PasswordReset from "../pages/PasswordReset/index";
 
 
 export const Navigation = () => {
