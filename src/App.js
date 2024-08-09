@@ -1,14 +1,14 @@
-import { Box } from "@mui/material"
+import React from "react";
+import { Box } from "@mui/material";
 import './App.css';
-import { Navigation } from "./navigation"
-import Home from "./pages/Home";
+import { Navigation } from "./navigation/index";
 
 
 
 function App() { 
   return (
     <Box className="App">
-      <Home />
+      <Navigation />
     </Box>
   );
 }

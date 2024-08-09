@@ -18,9 +18,6 @@ import EditAdminProfile from "../pages/EditAdminProfile";
 import PasswordReset from "../pages/PasswordReset";
 
 
-
-
-
 export const Navigation = () => {
     return (
         <UserProvider>
